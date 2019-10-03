@@ -43,7 +43,7 @@ public class PlayerInput : MonoBehaviour
     {
         JumpVelocity = new Vector3(0, 1) * JUMPPOWER;
         HorizontalMovement = Vector3.zero;
-        max_V = new Vector3(0, MAX_FALLSPEED);
+        max_V = new Vector3(0, -MAX_FALLSPEED);
 
         Fall = true;
         acceleration = new Vector3(0, 1) * GRAVITYMOD;
@@ -89,20 +89,20 @@ public class PlayerInput : MonoBehaviour
     void FixedUpdate()
     {
         // Detecting Collisions
-        RaycastHit hit;
+        RaycastHit2D hit;
         Fall = true;
 
 
         // checks for falling
-        if (Physics.Raycast(transform.position, collisionDown, out hit, detectiondistanceY))
+        if (hit = Physics2D.Raycast(transform.position, collisionDown, detectiondistanceY))
         {
             OnGroundPhysics(hit);
         }
-        else if (Physics.Raycast(transform.position, collisionDownLeft, out hit, diagnol_detectiondistance))
+        else if (hit = Physics2D.Raycast(transform.position, collisionDownLeft, diagnol_detectiondistance))
         {
             OnGroundPhysics(hit);
         }
-        else if (Physics.Raycast(transform.position, collisionDownRight, out hit, diagnol_detectiondistance))
+        else if (hit = Physics2D.Raycast(transform.position, collisionDownRight, diagnol_detectiondistance))
         {
             OnGroundPhysics(hit);
         }
@@ -121,7 +121,7 @@ public class PlayerInput : MonoBehaviour
 
     }
 
-    private void OnGroundPhysics(RaycastHit hit)
+    private void OnGroundPhysics(RaycastHit2D hit)
     {
         if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling")
         {
@@ -159,6 +159,7 @@ public class PlayerInput : MonoBehaviour
     public void SwitchGravity()
     {
         acceleration *= -1;
+        max_V *= -1;
 
         JumpVelocity *= -1;
         collisionDown *= -1;
@@ -167,6 +168,8 @@ public class PlayerInput : MonoBehaviour
         collisionDownRight *= -1;
         collisionUpLeft *= -1;
         collisionUpRight *= -1;
+
+        object_velocity += acceleration;
     }
 
     private void OnCollisionEnter(Collision collision)
