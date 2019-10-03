@@ -106,6 +106,24 @@ public class PlayerInput : MonoBehaviour
         {
             OnGroundPhysics(hit);
         }
+
+        // checks for ceiling
+        if (hit = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY))
+        {
+            OnCeilingPhysics(hit);
+        }
+        else if (hit = Physics2D.Raycast(transform.position, collisionUpLeft, diagnol_detectiondistance))
+        {
+            OnCeilingPhysics(hit);
+        }
+        else if (hit = Physics2D.Raycast(transform.position, collisionUpRight, diagnol_detectiondistance))
+        {
+            OnCeilingPhysics(hit);
+        }
+        // checking for left walls
+        // checking for right walls
+
+
         T_minus_1 = this.transform.position;
 
         this.transform.position += HorizontalMovement * WALKSPEED;
@@ -119,6 +137,15 @@ public class PlayerInput : MonoBehaviour
         }
 
 
+    }
+
+    private void OnCeilingPhysics(RaycastHit2D hit)
+    {
+        if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling")
+        {
+            object_velocity = Vector3.zero;
+            this.transform.position = T_minus_1;
+        }
     }
 
     private void OnGroundPhysics(RaycastHit2D hit)
