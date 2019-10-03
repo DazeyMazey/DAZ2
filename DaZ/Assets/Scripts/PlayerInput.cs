@@ -26,17 +26,15 @@ public class PlayerInput : MonoBehaviour
     // collision variables
     private float detectiondistanceY;
     private float detectiondistanceX;
-    private float diagnol_detectiondistance;
     private Vector3 collisionDown;
     private Vector3 collisionUp;
     private Vector3 collisionLeft;
     private Vector3 collisionRight;
-    private Vector3 collisionUpLeft;
-    private Vector3 collisionUpRight;
-    private Vector3 collisionDownLeft;
-    private Vector3 collisionDownRight;
     private Vector3 max_V;
 
+    // character properties
+    float width;
+    float height;
 
     // Start is called before the first frame update
     void Start()
@@ -50,20 +48,16 @@ public class PlayerInput : MonoBehaviour
         object_velocity = Vector3.zero;
         T_minus_1 = transform.position;
 
-        float width = GetComponent<SpriteRenderer>().bounds.size.x / 2;
-        float height = GetComponent<SpriteRenderer>().bounds.size.y / 2;
+        width = GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        height = GetComponent<SpriteRenderer>().bounds.size.y / 2;
         detectiondistanceY = height + 0.05f;
         detectiondistanceX = width;
-        diagnol_detectiondistance = (float)Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2)); // X^2 + Y^2 = Z^2 calculating the diagnol max distance for collision detection
 
         collisionDown = new Vector3(0, -1);
         collisionUp = new Vector3(0, 1);
         collisionLeft = new Vector3(-1, 0);
         collisionRight = new Vector3(1, 0);
-        collisionUpLeft = new Vector3(-1, 1);
-        collisionUpRight = new Vector3(1, 1);
-        collisionDownLeft = new Vector3(-1, -1);
-        collisionDownRight = new Vector3(1, -1);
+
 }
 
 
@@ -92,19 +86,47 @@ public class PlayerInput : MonoBehaviour
         RaycastHit2D hit;
         Fall = true;
 
-
+        Vector3 temp = new Vector3(width, 0);
         // checks for falling
         if (hit = Physics2D.Raycast(transform.position, collisionDown, detectiondistanceY))
         {
             OnGroundPhysics(hit);
         }
-        else if (hit = Physics2D.Raycast(transform.position, collisionDownLeft, diagnol_detectiondistance))
+        else if (hit = Physics2D.Raycast(transform.position + temp, collisionDown, detectiondistanceY))
         {
             OnGroundPhysics(hit);
         }
-        else if (hit = Physics2D.Raycast(transform.position, collisionDownRight, diagnol_detectiondistance))
+        else if (hit = Physics2D.Raycast(transform.position - temp, collisionDown, detectiondistanceY))
         {
             OnGroundPhysics(hit);
+        }
+
+        // checking for left walls
+        if (hit = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX))
+        {
+            OnWallPhysics(hit);
+        }
+        else if (hit = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX))
+        {
+            OnWallPhysics(hit);
+        }
+        else if (hit = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX))
+        {
+            OnWallPhysics(hit);
+        }
+
+        // checking for right walls
+        if (hit = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX))
+        {
+            OnWallPhysics(hit);
+        }
+        else if (hit = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX))
+        {
+            OnWallPhysics(hit);
+        }
+        else if (hit = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX))
+        {
+            OnWallPhysics(hit);
         }
 
         // checks for ceiling
@@ -112,24 +134,22 @@ public class PlayerInput : MonoBehaviour
         {
             OnCeilingPhysics(hit);
         }
-        else if (hit = Physics2D.Raycast(transform.position, collisionUpLeft, diagnol_detectiondistance))
+        else if (hit = Physics2D.Raycast(transform.position + temp, collisionUp, detectiondistanceY))
         {
             OnCeilingPhysics(hit);
         }
-        else if (hit = Physics2D.Raycast(transform.position, collisionUpRight, diagnol_detectiondistance))
+        else if (hit = Physics2D.Raycast(transform.position - temp, collisionUp, detectiondistanceY))
         {
             OnCeilingPhysics(hit);
         }
-        // checking for left walls
-        // checking for right walls
 
 
+        // set previous frame
         T_minus_1 = this.transform.position;
 
         this.transform.position += HorizontalMovement * WALKSPEED;
         this.transform.position += object_velocity;
 
-        // check for side walls
 
         if (Fall)
         {
@@ -137,6 +157,15 @@ public class PlayerInput : MonoBehaviour
         }
 
 
+    }
+
+    private void OnWallPhysics(RaycastHit2D hit)
+    {
+        if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling")
+        {
+            HorizontalMovement = Vector3.zero;
+            this.transform.position = T_minus_1;
+        }
     }
 
     private void OnCeilingPhysics(RaycastHit2D hit)
@@ -191,10 +220,6 @@ public class PlayerInput : MonoBehaviour
         JumpVelocity *= -1;
         collisionDown *= -1;
         collisionUp *= -1;
-        collisionDownLeft *= -1;
-        collisionDownRight *= -1;
-        collisionUpLeft *= -1;
-        collisionUpRight *= -1;
 
         object_velocity += acceleration;
     }
