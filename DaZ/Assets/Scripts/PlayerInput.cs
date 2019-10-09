@@ -18,12 +18,11 @@ public class PlayerInput : MonoBehaviour
     private Vector2 JumpVelocity;
     private Vector2 HorizontalMovement;
     private int curr_jumps = 0;
+    private int curr_grav;
 
     // private gravity variables
     private Vector2 acceleration;
     private Vector2 object_velocity;
-    private Vector2 T_minus_1_Y;
-    private Vector2 T_minus_1_X;
 
     // collision variables
     private float detectiondistanceY;
@@ -33,6 +32,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 collisionLeft;
     private Vector2 collisionRight;
     private Vector2 max_V;
+    private float collisionMod = 0.1f;
 
     // character properties
     float width;
@@ -48,19 +48,20 @@ public class PlayerInput : MonoBehaviour
         Fall = true;
         acceleration = new Vector3(0, 1) * GRAVITYMOD;
         object_velocity = Vector3.zero;
-        T_minus_1_Y = new Vector3(0, transform.position.y);
-        T_minus_1_X = new Vector3(transform.position.x, 0);
 
         width = (GetComponent<SpriteRenderer>().bounds.size.x / 2);
-        height = GetComponent<SpriteRenderer>().bounds.size.y / 2;
+        height = (GetComponent<SpriteRenderer>().bounds.size.y / 2);
 
         detectiondistanceY = height;
-        detectiondistanceX = width + 0.3f;
+        detectiondistanceX = width + collisionMod;
 
         collisionDown = new Vector2(0, -1);
         collisionUp = new Vector2(0, 1);
         collisionLeft = new Vector2(-1, 0);
         collisionRight = new Vector2(1, 0);
+
+
+        curr_grav = GRAVITY_USES;
 }
 
 
@@ -76,11 +77,12 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) // handles the gravity
         {
             // Check to see if you have uses of gravity
-            SwitchGravity();
+            if (curr_grav > 0)
+            {
+                SwitchGravity();
+                curr_grav -= 1;
+            }
         }
-
-
-
     }
 
     // Update is called once per frame
@@ -93,34 +95,35 @@ public class PlayerInput : MonoBehaviour
         // Detecting Collisions
         RaycastHit2D hit;
         Vector3 temp = new Vector3(width, 0);
+        Vector3 temp2 = new Vector3(0, height / 4);
 
-        // checking for left walls
+        //checking for left walls
         if (hit = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX))
         {
             OnWallLeftPhysics(hit);
         }
-        //else if (hit = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX))
-        //{
-        //    OnWallPhysics(hit);
-        //}
-        //else if (hit = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX))
-        //{
-        //    OnWallPhysics(hit);
-        //}
+        else if (hit = Physics2D.Raycast(transform.position + temp2, collisionLeft, detectiondistanceX))
+        {
+            OnWallLeftPhysics(hit);
+        }
+        else if (hit = Physics2D.Raycast(transform.position - temp2, collisionLeft, detectiondistanceX))
+        {
+            OnWallLeftPhysics(hit);
+        }
 
         // checking for right walls
         if (hit = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX))
         {
             OnWallRightPhysics(hit);
         }
-        //else if (hit = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX))
-        //{
-        //    OnWallPhysics(hit);
-        //}
-        //else if (hit = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX))
-        //{
-        //    OnWallPhysics(hit);
-        //}
+        else if (hit = Physics2D.Raycast(transform.position + temp2, collisionRight, detectiondistanceX))
+        {
+            OnWallRightPhysics(hit);
+        }
+        else if (hit = Physics2D.Raycast(transform.position - temp2, collisionRight, detectiondistanceX))
+        {
+            OnWallRightPhysics(hit);
+        }
 
 
         // checks for falling
@@ -156,11 +159,6 @@ public class PlayerInput : MonoBehaviour
         }
 
 
-        // set previous frame
-        T_minus_1_Y.y = this.transform.position.y;
-        T_minus_1_X.x = this.transform.position.x;
-
-
         if (Fall)
         {
             GravCalc();
@@ -173,7 +171,6 @@ public class PlayerInput : MonoBehaviour
     {
         if (hit.collider.tag == "Ground")
         {
-            HorizontalMovement = Vector2.zero;
             transform.position = new Vector3(hit.point.x + detectiondistanceX, transform.position.y);
         }
     }
@@ -182,7 +179,6 @@ public class PlayerInput : MonoBehaviour
     {
         if (hit.collider.tag == "Ground")
         {
-            HorizontalMovement = Vector2.zero;
             transform.position = new Vector3(hit.point.x - detectiondistanceX, transform.position.y);
         }
     }
@@ -200,13 +196,11 @@ public class PlayerInput : MonoBehaviour
     {
         if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling")
         {
+            //Debug.Log("Player: " + transform.position);
+            //Debug.Log("Hit Point: " + hit.point);
             Fall = false;
             object_velocity = Vector2.zero;
             curr_jumps = 0;
-
-            Debug.Log("Player: " + transform.position);
-            Debug.Log("Hit Point: " + hit.point);
-
             transform.position = new Vector3(transform.position.x, hit.point.y + height);
         }
     }
@@ -233,9 +227,6 @@ public class PlayerInput : MonoBehaviour
      }
 
 
-
-
-
     public void SwitchGravity()
     {
         acceleration *= -1;
@@ -251,7 +242,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Colliding with object in OnCollision");
+        Debug.Log("Colliding with object in OnCollision");
 
         if (collision.collider.gameObject.tag == "EnemyProjectile")
         {
