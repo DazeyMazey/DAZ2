@@ -32,7 +32,15 @@ public class PlayerInput : MonoBehaviour
     private Vector2 collisionLeft;
     private Vector2 collisionRight;
     private Vector2 max_V;
-    private float collisionMod = 0.1f;
+    private float collisionMod = 0.04f;
+
+    RaycastHit2D hitDown;
+    RaycastHit2D hitDown2;
+    RaycastHit2D hitDown3;
+
+    RaycastHit2D hitUp;
+    RaycastHit2D hitUp2;
+    RaycastHit2D hitUp3;
 
     // character properties
     float width;
@@ -60,6 +68,15 @@ public class PlayerInput : MonoBehaviour
         collisionLeft = new Vector2(-1, 0);
         collisionRight = new Vector2(1, 0);
 
+        Vector3 temp = new Vector3(width, 0);
+
+        hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY);
+        hitDown2 = Physics2D.Raycast(this.transform.position + temp, collisionDown, detectiondistanceY);
+        hitDown3 = Physics2D.Raycast(this.transform.position - temp, collisionDown, detectiondistanceY);
+
+        hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY);
+        hitUp2 = Physics2D.Raycast(transform.position + temp, collisionUp, detectiondistanceY);
+        hitUp3 = Physics2D.Raycast(transform.position - temp, collisionUp, detectiondistanceY);
 
         curr_grav = GRAVITY_USES;
 }
@@ -91,53 +108,67 @@ public class PlayerInput : MonoBehaviour
         //Move Character
         this.transform.Translate((HorizontalMovement * WALKSPEED) + object_velocity);
 
-
-        // Detecting Collisions
-        RaycastHit2D hit;
+        // Temp Vectors
         Vector3 temp = new Vector3(width, 0);
-        Vector3 temp2 = new Vector3(0, height / 4);
+        Vector3 temp2 = new Vector3(0, height);
+
+        // Detecting Collisions-- We're first casting the sides so we can do comparisons instead of prioritizing one side over another
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX);
+        RaycastHit2D hitUpLeft = Physics2D.Raycast(transform.position + temp2, collisionLeft, detectiondistanceX);
+        RaycastHit2D hitDownLeft = Physics2D.Raycast(transform.position - temp2, collisionLeft, detectiondistanceX);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX);
+        RaycastHit2D hitUpRight = Physics2D.Raycast(transform.position + temp2, collisionRight, detectiondistanceX);
+        RaycastHit2D hitDownRight = Physics2D.Raycast(transform.position - temp2, collisionRight, detectiondistanceX);
 
         //checking for left walls
-        if (hit = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX))
+        if (hitLeft)
         {
-            OnWallLeftPhysics(hit);
+            OnWallLeftPhysics(hitLeft);
         }
-        else if (hit = Physics2D.Raycast(transform.position + temp2, collisionLeft, detectiondistanceX))
+        else if(hitUpLeft && !hitUpRight && !hitUp2)
         {
-            OnWallLeftPhysics(hit);
+            OnWallLeftPhysics(hitUpLeft);
         }
-        else if (hit = Physics2D.Raycast(transform.position - temp2, collisionLeft, detectiondistanceX))
+        else if (hitDownLeft && !hitDownRight && !hitDown2)
         {
-            OnWallLeftPhysics(hit);
+            OnWallLeftPhysics(hitDownLeft);
         }
 
         // checking for right walls
-        if (hit = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX))
+        if (hitRight)
         {
-            OnWallRightPhysics(hit);
+            OnWallRightPhysics(hitRight);
         }
-        else if (hit = Physics2D.Raycast(transform.position + temp2, collisionRight, detectiondistanceX))
+        else if (!hitUpLeft && hitUpRight && !hitUp3)
         {
-            OnWallRightPhysics(hit);
+            OnWallRightPhysics(hitUpRight);
         }
-        else if (hit = Physics2D.Raycast(transform.position - temp2, collisionRight, detectiondistanceX))
+        else if (!hitDownLeft && hitDownRight && !hitDown3)
         {
-            OnWallRightPhysics(hit);
+            OnWallRightPhysics(hitDownRight);
         }
 
 
-        // checks for falling
-        if (hit = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY))
+        hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY);
+        hitDown2 = Physics2D.Raycast(this.transform.position + temp, collisionDown, detectiondistanceY);
+        hitDown3 = Physics2D.Raycast(this.transform.position - temp, collisionDown, detectiondistanceY);
+
+        hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY);
+        hitUp2 = Physics2D.Raycast(transform.position + temp, collisionUp, detectiondistanceY);
+        hitUp3 = Physics2D.Raycast(transform.position - temp, collisionUp, detectiondistanceY);
+
+        // checks for falling and bottom collisons
+        if (hitDown)
         {
-            OnGroundPhysics(hit);
+            OnGroundPhysics(hitDown);
         }
-        else if (hit = Physics2D.Raycast(this.transform.position + temp, collisionDown, detectiondistanceY))
+        else if (hitDown2)
         {
-            OnGroundPhysics(hit);
+            OnGroundPhysics(hitDown2);
         }
-        else if (hit = Physics2D.Raycast(this.transform.position - temp, collisionDown, detectiondistanceY))
+        else if (hitDown3)
         {
-            OnGroundPhysics(hit);
+            OnGroundPhysics(hitDown3);
         }
         else
         {
@@ -145,20 +176,22 @@ public class PlayerInput : MonoBehaviour
         }
 
         // checks for ceiling
-        if (hit = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY))
+        if (hitUp)
         {
-            OnCeilingPhysics(hit);
+            OnCeilingPhysics(hitUp);
         }
-        else if (hit = Physics2D.Raycast(transform.position + temp, collisionUp, detectiondistanceY))
+        else if (hitUp2)
         {
-            OnCeilingPhysics(hit);
+            OnCeilingPhysics(hitUp2);
         }
-        else if (hit = Physics2D.Raycast(transform.position - temp, collisionUp, detectiondistanceY))
+        else if (hitUp3)
         {
-            OnCeilingPhysics(hit);
+            OnCeilingPhysics(hitUp3);
         }
 
 
+
+        // Calc Gravity if no downwards collisions were detected
         if (Fall)
         {
             GravCalc();
@@ -169,7 +202,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnWallLeftPhysics(RaycastHit2D hit)
     {
-        if (hit.collider.tag == "Ground")
+        if (hit && hit.collider.tag == "Ground")
         {
             transform.position = new Vector3(hit.point.x + detectiondistanceX, transform.position.y);
         }
@@ -177,7 +210,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnWallRightPhysics(RaycastHit2D hit)
     {
-        if (hit.collider.tag == "Ground")
+        if (hit && hit.collider.tag == "Ground")
         {
             transform.position = new Vector3(hit.point.x - detectiondistanceX, transform.position.y);
         }
