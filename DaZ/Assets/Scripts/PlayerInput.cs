@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour
 {
+    // Globals accessed in Unity
     public float JUMPPOWER = 20f;
     public float WALKSPEED = 5f;
     public bool Fall;
@@ -12,13 +14,18 @@ public class PlayerInput : MonoBehaviour
     public float INITIALVELOCITY = 0;
     public float MAX_FALLSPEED = 1;
     public int MAX_JUMPS = 2;
-    public int GRAVITY_USES = 5;
+    public bool GRAVITY_USE;
+
+    // Unity Events
+    public UnityEvent Interact;
+
+    // Game Objects
+    public GameObject Bullet;
 
     // player movement vectors
     private Vector2 JumpVelocity;
     private Vector2 HorizontalMovement;
     private int curr_jumps = 0;
-    private int curr_grav;
 
     // private gravity variables
     private Vector2 acceleration;
@@ -77,14 +84,14 @@ public class PlayerInput : MonoBehaviour
         hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY);
         hitUp2 = Physics2D.Raycast(transform.position + temp, collisionUp, detectiondistanceY);
         hitUp3 = Physics2D.Raycast(transform.position - temp, collisionUp, detectiondistanceY);
-
-        curr_grav = GRAVITY_USES;
 }
 
-
+    // update called as much as possible
     private void Update()
     {
         HorizontalMovement.x = Input.GetAxis("Horizontal");
+        float aimY = Input.GetAxis("Vertical");
+        float aimX = HorizontalMovement.x;
 
         if (Input.GetKeyDown(KeyCode.Space) && curr_jumps < MAX_JUMPS) // handles the jumping
         {
@@ -94,10 +101,10 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) // handles the gravity
         {
             // Check to see if you have uses of gravity
-            if (curr_grav > 0)
+            if (GRAVITY_USE)
             {
                 SwitchGravity();
-                curr_grav -= 1;
+                GRAVITY_USE = false;
             }
         }
     }
@@ -235,10 +242,12 @@ public class PlayerInput : MonoBehaviour
             object_velocity = Vector2.zero;
             curr_jumps = 0;
             transform.position = new Vector3(transform.position.x, hit.point.y + height);
+            GRAVITY_USE = true;
         }
     }
 
-
+    // Adds velocity to object after setting to zero, that way the jump always starts at 0
+    // sets fall to true and adds to the current jumps that way we can monitor the number of jumps
     private void Jump()
     {
         // add positive adder to object_velocity
@@ -259,7 +268,6 @@ public class PlayerInput : MonoBehaviour
         // add a max cap to velocity and deltatime;
      }
 
-
     public void SwitchGravity()
     {
         acceleration *= -1;
@@ -272,6 +280,9 @@ public class PlayerInput : MonoBehaviour
 
         object_velocity += acceleration;
     }
+    
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
