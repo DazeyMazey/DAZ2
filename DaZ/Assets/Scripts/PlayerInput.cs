@@ -280,17 +280,5 @@ public class PlayerInput : MonoBehaviour
 
         object_velocity += acceleration;
     }
-    
 
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Colliding with object in OnCollision");
-
-        if (collision.collider.gameObject.tag == "EnemyProjectile")
-        {
-
-        }
-    }
 }
