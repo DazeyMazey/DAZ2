@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour
 {
+/** VARIABLES **/
     // Globals accessed in Unity
     public float JUMPPOWER = 20f;
     public float WALKSPEED = 5f;
@@ -15,9 +16,7 @@ public class PlayerInput : MonoBehaviour
     public float MAX_FALLSPEED = 1;
     public int MAX_JUMPS = 2;
     public bool GRAVITY_USE;
-
-    // Unity Events
-    public UnityEvent Interact;
+    public bool PlayerEnabled;
 
     // Game Objects
     public GameObject Bullet;
@@ -53,9 +52,16 @@ public class PlayerInput : MonoBehaviour
     float width;
     float height;
 
+  
+    
+    
+    
+/** FUNCTIONS **/ 
+    
     // Start is called before the first frame update
     void Start()
     {
+        PlayerEnabled = true;
         JumpVelocity = new Vector3(0, 1) * JUMPPOWER;
         HorizontalMovement = Vector3.zero;
         max_V = new Vector3(0, -MAX_FALLSPEED);
@@ -89,7 +95,12 @@ public class PlayerInput : MonoBehaviour
     // update called as much as possible
     private void Update()
     {
-        HorizontalMovement.x = Input.GetAxis("Horizontal");
+        if (PlayerEnabled)
+            HorizontalMovement.x = Input.GetAxis("Horizontal");
+        else
+            HorizontalMovement.x = 0;
+
+
         float aimY = Input.GetAxis("Vertical");
         float aimX = HorizontalMovement.x;
 
@@ -101,10 +112,19 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) // handles the gravity
         {
             // Check to see if you have uses of gravity
-            if (GRAVITY_USE)
+            if (GRAVITY_USE && PlayerEnabled)
             {
                 SwitchGravity();
                 GRAVITY_USE = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && PlayerEnabled)
+        {
+            RaycastHit2D hit = InteractionChecker();
+            if (hit)
+            {
+                InteractWithObject(hit);
             }
         }
     }
@@ -132,7 +152,7 @@ public class PlayerInput : MonoBehaviour
         {
             OnWallLeftPhysics(hitLeft);
         }
-        else if(hitUpLeft && !hitUpRight && !hitUp2)
+        else if (hitUpLeft && !hitUpRight && !hitUp2)
         {
             OnWallLeftPhysics(hitUpLeft);
         }
@@ -206,7 +226,43 @@ public class PlayerInput : MonoBehaviour
 
 
     }
+  
+    
+  
+    
+    /** Character Functions for movement and Enabling **/
+    private void InteractWithObject(RaycastHit2D hit)
+    {
+        hit.collider.SendMessageUpwards("interact", SendMessageOptions.DontRequireReceiver);
+        PausePlayer();
+    }
+   
+    // Adds velocity to object after setting to zero, that way the jump always starts at 0
+    // sets fall to true and adds to the current jumps that way we can monitor the number of jumps
+    private void Jump()
+    {
+        // add positive adder to object_velocity
+        object_velocity = Vector2.zero;
+        object_velocity += JumpVelocity;
+        Fall = true;
+        curr_jumps++;
+    }
 
+    // Pause player horizontal and gravity manipulation movement
+    public void PausePlayer()
+    {
+        PlayerEnabled = false;
+    }
+    // Re-enable player horizontal and gravity manipulation movement
+    public void PlayPlayer()
+    {
+        PlayerEnabled = true;
+    }
+
+
+
+    
+    /** Physics for platforming **/
     private void OnWallLeftPhysics(RaycastHit2D hit)
     {
         if (hit && hit.collider.tag == "Ground")
@@ -246,17 +302,45 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    // Adds velocity to object after setting to zero, that way the jump always starts at 0
-    // sets fall to true and adds to the current jumps that way we can monitor the number of jumps
-    private void Jump()
+   
+    /** Interactions with story **/
+    private RaycastHit2D InteractionChecker()
     {
-        // add positive adder to object_velocity
-        object_velocity = Vector2.zero;
-        object_velocity += JumpVelocity;
-        Fall = true;
-        curr_jumps++;
+        Vector3 temp = new Vector3(width, 0);
+        Vector3 temp2 = new Vector3(0, height);
+
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX);
+        RaycastHit2D hitDowntemp = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY);
+        RaycastHit2D hitUptemp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY);
+
+        if (hitLeft)
+        {
+            if (hitLeft.collider.tag == "interact")
+                return hitLeft;
+        }
+        if (hitRight)
+        {
+            if (hitRight.collider.tag == "interact")
+                return hitRight;
+        }
+        if (hitDowntemp)
+        {
+            if (hitDowntemp.collider.tag == "interact")
+                return hitDowntemp;
+        }
+        if (hitUptemp)
+        {
+            if (hitUptemp.collider.tag == "interact")
+                return hitUptemp;
+        }
+
+        return hitLeft;
     }
 
+
+
+    /** Gravity Functions **/
     private void GravCalc()
      {
         if (object_velocity.magnitude < MAX_FALLSPEED)
@@ -268,6 +352,9 @@ public class PlayerInput : MonoBehaviour
         // add a max cap to velocity and deltatime;
      }
 
+    // Switches the way gravity accelerates and the way jumps push
+    // also switches collisions so the ceiling of levels are now treated like floors
+    // gets falling started by adding new acceleration to velocity
     public void SwitchGravity()
     {
         acceleration *= -1;

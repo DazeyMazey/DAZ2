@@ -62,6 +62,5 @@ public class DialogueBehavior : MonoBehaviour
     {
         Debug.Log("end of conversation");
         animator.SetBool("IsOpen", false);
-
     }
 }
