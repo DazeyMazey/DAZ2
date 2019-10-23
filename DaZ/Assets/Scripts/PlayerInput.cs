@@ -17,8 +17,10 @@ public class PlayerInput : MonoBehaviour
     public int MAX_JUMPS = 2;
     public bool GRAVITY_USE;
     public bool PlayerEnabled;
+    public int kickback = 3;
 
     public int Health = 3;
+    public float IFrames = 3f;
 
     // Game Objects
     public UnityEvent gameover;
@@ -54,6 +56,7 @@ public class PlayerInput : MonoBehaviour
     float width;
     float height;
     private SpriteRenderer spriteR;
+    private bool invincible;
 
   
     
@@ -77,6 +80,7 @@ public class PlayerInput : MonoBehaviour
         height = (GetComponent<SpriteRenderer>().bounds.size.y / 2);
 
         spriteR = gameObject.GetComponent<SpriteRenderer>();
+        invincible = false;
 
         detectiondistanceY = height;
         detectiondistanceX = width + collisionMod;
@@ -162,30 +166,35 @@ public class PlayerInput : MonoBehaviour
         if (hitLeft)
         {
             OnWallLeftPhysics(hitLeft);
+            CheckDamage(hitLeft, collisionLeft);
         }
         else if (hitUpLeft && !hitUpRight && !hitUp2)
         {
             OnWallLeftPhysics(hitUpLeft);
+            CheckDamage(hitUpLeft, collisionLeft);
         }
         else if (hitDownLeft && !hitDownRight && !hitDown2)
         {
             OnWallLeftPhysics(hitDownLeft);
+            CheckDamage(hitDownLeft, collisionLeft);
         }
 
         // checking for right walls
         if (hitRight)
         {
             OnWallRightPhysics(hitRight);
+            CheckDamage(hitRight, collisionRight);
         }
         else if (!hitUpLeft && hitUpRight && !hitUp3)
         {
             OnWallRightPhysics(hitUpRight);
+            CheckDamage(hitUpRight, collisionRight);
         }
         else if (!hitDownLeft && hitDownRight && !hitDown3)
         {
             OnWallRightPhysics(hitDownRight);
+            CheckDamage(hitDownRight, collisionRight);
         }
-
 
         hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY);
         hitDown2 = Physics2D.Raycast(this.transform.position + temp, collisionDown, detectiondistanceY);
@@ -199,14 +208,20 @@ public class PlayerInput : MonoBehaviour
         if (hitDown)
         {
             OnGroundPhysics(hitDown);
+            CheckDamage(hitDown, collisionDown);
+
         }
         else if (hitDown2)
         {
             OnGroundPhysics(hitDown2);
+            CheckDamage(hitDown2, collisionDown);
+
         }
         else if (hitDown3)
         {
             OnGroundPhysics(hitDown3);
+            CheckDamage(hitDown3, collisionDown);
+
         }
         else
         {
@@ -217,14 +232,17 @@ public class PlayerInput : MonoBehaviour
         if (hitUp)
         {
             OnCeilingPhysics(hitUp);
+            CheckDamage(hitUp, collisionUp);
         }
         else if (hitUp2)
         {
             OnCeilingPhysics(hitUp2);
+            CheckDamage(hitUp2, collisionUp);
         }
         else if (hitUp3)
         {
             OnCeilingPhysics(hitUp3);
+            CheckDamage(hitUp3, collisionUp);
         }
 
 
@@ -270,18 +288,39 @@ public class PlayerInput : MonoBehaviour
         PlayerEnabled = true;
     }
 
-    public void DamagePlayer()
+    public void DamagePlayer(Vector2 ray)
     {
-        Health -= 1;
-
-        if (Health <= 0)
+        if (Health > 0 && !invincible)
+        {
+            Health -= 1;
+            object_velocity += ray.normalized * -1 * kickback;
+        }
+        else if (Health <= 0)
         {
             this.enabled = false;
             gameover.Invoke();
         }
-        else
-        { 
-            //invincibility frames or reset to last safe location
+        else if (!invincible)
+        {
+            invincible = true;
+            Invoke("endInvincible", IFrames);
+        }
+    }
+
+    private void endInvincible()
+    {
+        invincible = false;
+    }
+
+    public void CheckDamage(RaycastHit2D ray, Vector2 direction)
+    {
+        Debug.Log("CheckDamage");
+        Debug.Log(ray.collider.tag);
+
+        if (ray.collider.tag == "Hazard")
+        {
+            DamagePlayer(direction);
+            Debug.Log("Damaged Player");
         }
     }
 
@@ -289,7 +328,7 @@ public class PlayerInput : MonoBehaviour
     /** Physics for platforming **/
     private void OnWallLeftPhysics(RaycastHit2D hit)
     {
-        if (hit && hit.collider.tag == "Ground")
+        if (hit.collider.tag == "Ground" || hit.collider.tag == "Hazard")
         {
             transform.position = new Vector3(hit.point.x + detectiondistanceX, transform.position.y);
         }
@@ -297,7 +336,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnWallRightPhysics(RaycastHit2D hit)
     {
-        if (hit && hit.collider.tag == "Ground")
+        if (hit.collider.tag == "Ground" || hit.collider.tag == "Hazard")
         {
             transform.position = new Vector3(hit.point.x - detectiondistanceX, transform.position.y);
         }
@@ -305,7 +344,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnCeilingPhysics(RaycastHit2D hit)
     {
-        if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling")
+        if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling" || hit.collider.tag == "Hazard")
         {
             object_velocity = Vector2.zero;
             transform.position = new Vector3(transform.position.x, hit.point.y - height);
@@ -314,7 +353,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnGroundPhysics(RaycastHit2D hit)
     {
-        if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling")
+        if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling" || hit.collider.tag == "Hazard")
         {
             //Debug.Log("Player: " + transform.position);
             //Debug.Log("Hit Point: " + hit.point);
