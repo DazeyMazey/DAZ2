@@ -18,8 +18,10 @@ public class PlayerInput : MonoBehaviour
     public bool GRAVITY_USE;
     public bool PlayerEnabled;
 
+    public int Health = 3;
+
     // Game Objects
-    public GameObject Bullet;
+    public UnityEvent gameover;
 
     // player movement vectors
     private Vector2 JumpVelocity;
@@ -51,6 +53,7 @@ public class PlayerInput : MonoBehaviour
     // character properties
     float width;
     float height;
+    private SpriteRenderer spriteR;
 
   
     
@@ -72,6 +75,8 @@ public class PlayerInput : MonoBehaviour
 
         width = (GetComponent<SpriteRenderer>().bounds.size.x / 2);
         height = (GetComponent<SpriteRenderer>().bounds.size.y / 2);
+
+        spriteR = gameObject.GetComponent<SpriteRenderer>();
 
         detectiondistanceY = height;
         detectiondistanceX = width + collisionMod;
@@ -100,11 +105,17 @@ public class PlayerInput : MonoBehaviour
         else
             HorizontalMovement.x = 0;
 
+        switch (HorizontalMovement.x)
+        {
+            case 1: spriteR.flipX = true; break;
+            case -1: spriteR.flipX = false; break;
+            default: spriteR.flipX = spriteR.flipX; break;
+        }
 
         float aimY = Input.GetAxis("Vertical");
         float aimX = HorizontalMovement.x;
 
-        if (Input.GetKeyDown(KeyCode.Space) && curr_jumps < MAX_JUMPS) // handles the jumping
+        if (Input.GetKeyDown(KeyCode.Space) && curr_jumps < MAX_JUMPS && PlayerEnabled) // handles the jumping
         {
             Jump();
             this.transform.Translate(JumpVelocity);
@@ -259,7 +270,20 @@ public class PlayerInput : MonoBehaviour
         PlayerEnabled = true;
     }
 
+    public void DamagePlayer()
+    {
+        Health -= 1;
 
+        if (Health <= 0)
+        {
+            this.enabled = false;
+            gameover.Invoke();
+        }
+        else
+        { 
+            //invincibility frames or reset to last safe location
+        }
+    }
 
     
     /** Physics for platforming **/
@@ -366,6 +390,7 @@ public class PlayerInput : MonoBehaviour
         height *= -1;
 
         object_velocity += acceleration;
+        spriteR.flipY = !spriteR.flipY;
     }
 
 }
