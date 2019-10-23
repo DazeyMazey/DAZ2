@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 685b288bd72194a9585d51064b1a0ce6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,3 +183,6 @@ MonoBehaviour:
   INITIALVELOCITY: -0.01
   MAX_FALLSPEED: 1
   MAX_JUMPS: 2
+  GRAVITY_USE: 0
+  PlayerEnabled: 0
+  Bullet: {fileID: 0}
