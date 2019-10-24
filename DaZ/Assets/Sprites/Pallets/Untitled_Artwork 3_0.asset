@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Floor tiles_7 2
+  m_Name: Untitled_Artwork 3_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -6598106375722933040, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
+  m_Sprite: {fileID: -6950486346419376927, guid: 40dd52439baa548309b855471a48da83,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
