@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Hazard
+  - interact
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Interact
   - 
   - 
   - 
