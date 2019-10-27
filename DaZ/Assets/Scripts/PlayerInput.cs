@@ -10,18 +10,19 @@ public class PlayerInput : MonoBehaviour
     // Globals accessed in Unity
     public float JUMPPOWER = 20f;
     public float WALKSPEED = 5f;
-    public bool Fall;
     public float GRAVITYMOD = -9.8f;
     public float INITIALVELOCITY = 0;
     public float MAX_FALLSPEED = 1;
     public int MAX_JUMPS = 2;
     public bool GRAVITY_USE;
+   
+    public bool Fall;
     public bool PlayerEnabled;
-
     public int Health = 3;
+    public int totalItemsCollected = 0;
 
     // Game Objects
-    public UnityEvent gameover;
+    public UnityEvent GameOver;
 
     // player movement vectors
     private Vector2 JumpVelocity;
@@ -39,12 +40,16 @@ public class PlayerInput : MonoBehaviour
     private Vector2 collisionUp;
     private Vector2 collisionLeft;
     private Vector2 collisionRight;
+
+    private Vector3 widthVector;
+    private Vector3 heightVector;
     
     
     private Vector2 max_V;
     private float collisionMod = 0.04f;
     private int physicsLayer = (1 << 0);
     private int interactLayer = (1 << 8);
+    private int collectLayer = (1 << 9);
 
     RaycastHit2D hitDown;
     RaycastHit2D hitDown2;
@@ -99,23 +104,23 @@ public class PlayerInput : MonoBehaviour
         collisionLeft = new Vector2(-1, 0);
         collisionRight = new Vector2(1, 0);
 
-        Vector3 temp = new Vector3(width, 0);
-        Vector3 temp2 = new Vector3(0, height);
+        widthVector = new Vector3(width, 0);
+        heightVector = new Vector3(0, height);
 
         hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY, physicsLayer);
-        hitDown2 = Physics2D.Raycast(this.transform.position + temp, collisionDown, detectiondistanceY, physicsLayer);
-        hitDown3 = Physics2D.Raycast(this.transform.position - temp, collisionDown, detectiondistanceY, physicsLayer);
+        hitDown2 = Physics2D.Raycast(this.transform.position + widthVector, collisionDown, detectiondistanceY, physicsLayer);
+        hitDown3 = Physics2D.Raycast(this.transform.position - widthVector, collisionDown, detectiondistanceY, physicsLayer);
 
         hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, physicsLayer);
-        hitUp2 = Physics2D.Raycast(transform.position + temp, collisionUp, detectiondistanceY, physicsLayer);
-        hitUp3 = Physics2D.Raycast(transform.position - temp, collisionUp, detectiondistanceY, physicsLayer);
+        hitUp2 = Physics2D.Raycast(transform.position + widthVector, collisionUp, detectiondistanceY, physicsLayer);
+        hitUp3 = Physics2D.Raycast(transform.position - widthVector, collisionUp, detectiondistanceY, physicsLayer);
 
         hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, physicsLayer);
-        hitUpLeft = Physics2D.Raycast(transform.position + temp2, collisionLeft, detectiondistanceX, physicsLayer);
-        hitDownLeft = Physics2D.Raycast(transform.position - temp2, collisionLeft, detectiondistanceX, physicsLayer);
+        hitUpLeft = Physics2D.Raycast(transform.position + heightVector, collisionLeft, detectiondistanceX, physicsLayer);
+        hitDownLeft = Physics2D.Raycast(transform.position - heightVector, collisionLeft, detectiondistanceX, physicsLayer);
         hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, physicsLayer);
-        hitUpRight = Physics2D.Raycast(transform.position + temp2, collisionRight, detectiondistanceX, physicsLayer);
-        hitDownRight = Physics2D.Raycast(transform.position - temp2, collisionRight, detectiondistanceX, physicsLayer);
+        hitUpRight = Physics2D.Raycast(transform.position + heightVector, collisionRight, detectiondistanceX, physicsLayer);
+        hitDownRight = Physics2D.Raycast(transform.position - heightVector, collisionRight, detectiondistanceX, physicsLayer);
     }
 
     // update called as much as possible
@@ -127,11 +132,17 @@ public class PlayerInput : MonoBehaviour
             HorizontalMovement.x = 0;
 
         if (HorizontalMovement.x > 0)
+        {
             spriteR.flipX = true;
+        }
         else if (HorizontalMovement.x < 0)
+        {
             spriteR.flipX = false;
+        }
         else
+        {
             spriteR.flipX = spriteR.flipX;
+        }
 
 
         float aimY = Input.GetAxis("Vertical");
@@ -168,78 +179,82 @@ public class PlayerInput : MonoBehaviour
     {
         //Move Character
         this.transform.Translate((HorizontalMovement * WALKSPEED) + object_velocity);
+        CheckCollisions();
+        CheckCollectables();
+     
+    }
 
-        // Temp Vectors
-        Vector3 temp = new Vector3(width, 0);
-        Vector3 temp2 = new Vector3(0, height);
-
-        // Detecting Collisions-- We're first casting the sides so we can do comparisons instead of prioritizing one side over another
+    // Raycast checkers
+    private void CheckCollisions()
+    {
+         // Detecting Collisions-- We're first casting the sides so we can do comparisons instead of prioritizing one side over another
         hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, physicsLayer);
-        hitUpLeft = Physics2D.Raycast(transform.position + temp2, collisionLeft, detectiondistanceX, physicsLayer);
-        hitDownLeft = Physics2D.Raycast(transform.position - temp2, collisionLeft, detectiondistanceX, physicsLayer);
+        hitUpLeft = Physics2D.Raycast(transform.position + heightVector, collisionLeft, detectiondistanceX, physicsLayer);
+        hitDownLeft = Physics2D.Raycast(transform.position - heightVector, collisionLeft, detectiondistanceX, physicsLayer);
         hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, physicsLayer);
-        hitUpRight = Physics2D.Raycast(transform.position + temp2, collisionRight, detectiondistanceX, physicsLayer);
-        hitDownRight = Physics2D.Raycast(transform.position - temp2, collisionRight, detectiondistanceX, physicsLayer);
+        hitUpRight = Physics2D.Raycast(transform.position + heightVector, collisionRight, detectiondistanceX, physicsLayer);
+        hitDownRight = Physics2D.Raycast(transform.position - heightVector, collisionRight, detectiondistanceX, physicsLayer);
 
-        //checking for left walls
+        // checking for left walls ---
         if (hitLeft)
         {
             OnWallLeftPhysics(hitLeft);
-            CheckDamage(hitLeft, collisionLeft);
+            CheckDamage(hitLeft);
         }
-        else if (hitUpLeft && !hitUpRight && !hitUp2)
+        else if (hitUpLeft && !hitUpRight && Fall)
         {
             OnWallLeftPhysics(hitUpLeft);
-            CheckDamage(hitUpLeft, collisionLeft);
+            CheckDamage(hitUpLeft);
         }
-        else if (hitDownLeft && !hitDownRight && !hitDown2)
+        else if (hitDownLeft && Fall && !hitDownRight)
         {
             OnWallLeftPhysics(hitDownLeft);
-            CheckDamage(hitDownLeft, collisionLeft);
+            CheckDamage(hitDownLeft);
         }
 
-        // checking for right walls
+        // checking for right walls ---
         if (hitRight)
         {
             OnWallRightPhysics(hitRight);
-            CheckDamage(hitRight, collisionRight);
+            CheckDamage(hitRight);
         }
-        else if (!hitUpLeft && hitUpRight && !hitUp3)
+        else if (!hitUpLeft && hitUpRight && Fall)
         {
             OnWallRightPhysics(hitUpRight);
-            CheckDamage(hitUpRight, collisionRight);
+            CheckDamage(hitUpRight);
         }
-        else if (!hitDownLeft && hitDownRight && !hitDown3)
+        else if (hitDownRight && Fall & !hitDownLeft)
         {
+            //Debug.Log("DownLeft");
             OnWallRightPhysics(hitDownRight);
-            CheckDamage(hitDownRight, collisionRight);
+            CheckDamage(hitDownRight);
         }
 
+        // checking for Ground and Ceiling ---
         hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY, physicsLayer);
-        hitDown2 = Physics2D.Raycast(this.transform.position + temp, collisionDown, detectiondistanceY, physicsLayer);
-        hitDown3 = Physics2D.Raycast(this.transform.position - temp, collisionDown, detectiondistanceY, physicsLayer);
+        hitDown2 = Physics2D.Raycast(this.transform.position + widthVector, collisionDown, detectiondistanceY, physicsLayer);
+        hitDown3 = Physics2D.Raycast(this.transform.position - widthVector, collisionDown, detectiondistanceY, physicsLayer);
 
         hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, physicsLayer);
-        hitUp2 = Physics2D.Raycast(transform.position + temp, collisionUp, detectiondistanceY, physicsLayer);
-        hitUp3 = Physics2D.Raycast(transform.position - temp, collisionUp, detectiondistanceY, physicsLayer);
-
+        hitUp2 = Physics2D.Raycast(transform.position + widthVector, collisionUp, detectiondistanceY, physicsLayer);
+        hitUp3 = Physics2D.Raycast(transform.position - widthVector, collisionUp, detectiondistanceY, physicsLayer);
         // checks for falling and bottom collisons
         if (hitDown)
         {
             OnGroundPhysics(hitDown);
-            CheckDamage(hitDown, collisionDown);
+            CheckDamage(hitDown);
 
         }
         else if (hitDown2)
         {
             OnGroundPhysics(hitDown2);
-            CheckDamage(hitDown2, collisionDown);
+            CheckDamage(hitDown2);
 
         }
         else if (hitDown3)
         {
             OnGroundPhysics(hitDown3);
-            CheckDamage(hitDown3, collisionDown);
+            CheckDamage(hitDown3);
 
         }
         else
@@ -251,19 +266,18 @@ public class PlayerInput : MonoBehaviour
         if (hitUp)
         {
             OnCeilingPhysics(hitUp);
-            CheckDamage(hitUp, collisionUp);
+            CheckDamage(hitUp);
         }
         else if (hitUp2)
         {
             OnCeilingPhysics(hitUp2);
-            CheckDamage(hitUp2, collisionUp);
+            CheckDamage(hitUp2);
         }
         else if (hitUp3)
         {
             OnCeilingPhysics(hitUp3);
-            CheckDamage(hitUp3, collisionUp);
+            CheckDamage(hitUp3);
         }
-
 
 
         // Calc Gravity if no downwards collisions were detected
@@ -271,126 +285,46 @@ public class PlayerInput : MonoBehaviour
         {
             GravCalc();
         }
-
-
     }
-  
-    
-  
-    
-    /** Character Functions for movement and Enabling **/
-    private void InteractWithObject(RaycastHit2D hit)
+    public void CheckDamage(RaycastHit2D ray)
     {
-        hit.collider.SendMessageUpwards("interact", SendMessageOptions.DontRequireReceiver);
-        PausePlayer();
-    }
-   
-    // Adds velocity to object after setting to zero, that way the jump always starts at 0
-    // sets fall to true and adds to the current jumps that way we can monitor the number of jumps
-    private void Jump()
-    {
-        // add positive adder to object_velocity
-        object_velocity = Vector2.zero;
-        object_velocity += JumpVelocity;
-        Fall = true;
-        curr_jumps++;
-    }
-
-    // Pause player horizontal and gravity manipulation movement
-    public void PausePlayer()
-    {
-        PlayerEnabled = false;
-    }
-    // Re-enable player horizontal and gravity manipulation movement
-    public void PlayPlayer()
-    {
-        PlayerEnabled = true;
-    }
-
-    public void DamagePlayer(Vector2 ray)
-    {
-        if (Health > 0)
+        if (ray.collider.CompareTag("Hazard"))
         {
-            Health -= 1;
-            resetPlayer();
-        }
-        else if (Health <= 0)
-        {
-            this.enabled = false;
-            gameover.Invoke();
+            DamagePlayer();
         }
     }
-
-    private void resetPlayer()
+    private void CheckCollectables()
     {
-        this.transform.position = PlayerSpawn;
-        object_velocity = Vector2.zero;
-        HorizontalMovement = Vector2.zero;
-        curr_jumps = 0;
-        spriteR.flipY = false;
-        GRAVITY_USE = false;
+        hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, collectLayer);
+        hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, collectLayer);
+        RaycastHit2D hitDowntemp = Physics2D.Raycast(transform.position, collisionDown, detectiondistanceY, collectLayer);
+        RaycastHit2D hitUptemp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, collectLayer);
 
-        Start();
-    }
-
-
-    public void CheckDamage(RaycastHit2D ray, Vector2 direction)
-    {
-        if (ray.collider.tag == "Hazard")
+        if (hitLeft && hitLeft.collider.CompareTag("collectable"))
         {
-            DamagePlayer(direction);
+            CollectCollectable(hitLeft);
+        }
+        else if (hitRight && hitRight.collider.CompareTag("collectable"))
+        {
+            Debug.Log("Collided with Object");
+            CollectCollectable(hitRight);
+        }
+        else if (hitDowntemp && hitDowntemp.collider.CompareTag("collectable"))
+        {
+            Debug.Log("Collided with Object");
+            CollectCollectable(hitDowntemp);
+        }
+        else if (hitUptemp && hitUptemp.collider.CompareTag("collectable"))
+        {
+            Debug.Log("Collided with Object");
+            CollectCollectable(hitUptemp);
         }
     }
-
-    
-    /** Physics for platforming **/
-    private void OnWallLeftPhysics(RaycastHit2D hit)
-    {
-        if (hit.collider.tag == "Ground")
-        {
-            transform.position = new Vector3(hit.point.x + detectiondistanceX, transform.position.y);
-        }
-    }
-
-    private void OnWallRightPhysics(RaycastHit2D hit)
-    {
-        if (hit.collider.tag == "Ground")
-        {
-            transform.position = new Vector3(hit.point.x - detectiondistanceX, transform.position.y);
-        }
-    }
-
-    private void OnCeilingPhysics(RaycastHit2D hit)
-    {
-        if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling")
-        {
-            object_velocity = Vector2.zero;
-            transform.position = new Vector3(transform.position.x, hit.point.y - height);
-        }
-    }
-
-    private void OnGroundPhysics(RaycastHit2D hit)
-    {
-        if (hit.collider.tag == "Ground" || hit.collider.tag == "Ceiling")
-        {
-            Fall = false;
-            object_velocity = Vector2.zero;
-            curr_jumps = 0;
-            transform.position = new Vector3(transform.position.x, hit.point.y + height);
-            GRAVITY_USE = true;
-        }
-    }
-
-   
-    /** Interactions with story **/
     private RaycastHit2D InteractionChecker()
     {
-        Vector3 temp = new Vector3(width, 0);
-        Vector3 temp2 = new Vector3(0, height);
-
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, interactLayer);
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, interactLayer);
-        RaycastHit2D hitDowntemp = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY, interactLayer);
+        RaycastHit2D hitDowntemp = Physics2D.Raycast(transform.position, collisionDown, detectiondistanceY, interactLayer);
         RaycastHit2D hitUptemp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, interactLayer);
 
         if (hitLeft)
@@ -422,16 +356,112 @@ public class PlayerInput : MonoBehaviour
 
 
 
+    /** Character Functions for movement and Enabling **/
+    private void InteractWithObject(RaycastHit2D hit)
+    {
+        hit.collider.SendMessageUpwards("interact", SendMessageOptions.DontRequireReceiver);
+        PausePlayer();
+    }
+    private void CollectCollectable(RaycastHit2D hit)
+    {
+        hit.collider.SendMessageUpwards("destroy", SendMessageOptions.DontRequireReceiver);
+        totalItemsCollected++;
+    }
+   
+
+    // Adds velocity to object after setting to zero, that way the jump always starts at 0
+    // sets fall to true and adds to the current jumps that way we can monitor the number of jumps
+    private void Jump()
+    {
+        // add positive adder to object_velocity
+        object_velocity = Vector2.zero;
+        object_velocity += JumpVelocity;
+        Fall = true;
+        curr_jumps++;
+    }
+
+    // Pause player horizontal and gravity manipulation movement
+    public void PausePlayer()
+    {
+        PlayerEnabled = false;
+    }
+    // Re-enable player horizontal and gravity manipulation movement
+    public void PlayPlayer()
+    {
+        PlayerEnabled = true;
+    }
+    private void ResetPlayer()
+    {
+        this.transform.position = PlayerSpawn;
+        object_velocity = Vector2.zero;
+        HorizontalMovement = Vector2.zero;
+        curr_jumps = 0;
+        spriteR.flipY = false;
+        GRAVITY_USE = false;
+
+        Start();
+    }
+
+    public void DamagePlayer()
+    {
+        if (Health > 0)
+        {
+            Health -= 1;
+            ResetPlayer();
+        }
+        else if (Health <= 0)
+        {
+            this.enabled = false;
+            ResetPlayer();
+            GameOver.Invoke();
+        }
+    }
+
+
+
+    /** Physics for platforming **/
+    private void OnWallLeftPhysics(RaycastHit2D hit)
+    {
+        if (hit.collider.CompareTag("Ground"))
+        {
+            transform.position = new Vector3(hit.point.x + detectiondistanceX, transform.position.y);
+        }
+    }
+    private void OnWallRightPhysics(RaycastHit2D hit)
+    {
+        if (hit.collider.tag == "Ground")
+        {
+            transform.position = new Vector3(hit.point.x - detectiondistanceX, transform.position.y);
+        }
+    }
+    private void OnCeilingPhysics(RaycastHit2D hit)
+    {
+        if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Ceiling"))
+        {
+            object_velocity = Vector2.zero;
+            transform.position = new Vector3(transform.position.x, hit.point.y - height);
+        }
+    }
+    private void OnGroundPhysics(RaycastHit2D hit)
+    {
+        if (hit.collider.CompareTag("Ground"))
+        {
+            Fall = false;
+            object_velocity = Vector2.zero;
+            curr_jumps = 0;
+            transform.position = new Vector3(transform.position.x, hit.point.y + height);
+            GRAVITY_USE = true;
+        }
+    }
+ 
     /** Gravity Functions **/
     private void GravCalc()
      {
         if (object_velocity.magnitude < MAX_FALLSPEED)
             object_velocity += (acceleration);
-        else
+        else // Velocity Cap
             object_velocity = max_V;
 
-        
-        // add a max cap to velocity and deltatime;
      }
 
     // Switches the way gravity accelerates and the way jumps push
