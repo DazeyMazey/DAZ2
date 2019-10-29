@@ -8,7 +8,7 @@ public class DialogueBehavior : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
-    public Animator animator;
+   // public Animator animator;
 
     private Queue<string> sentences; // list of words
 
@@ -18,9 +18,9 @@ public class DialogueBehavior : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(_Dialogue dialogue)
     {
-        animator.SetBool("IsOpen", true);
+     //   animator.SetBool("IsOpen", true);
 
         sentences.Clear();
         nameText.text = dialogue.name;
@@ -61,6 +61,8 @@ public class DialogueBehavior : MonoBehaviour
     private void EndDialogue()
     {
         Debug.Log("end of conversation");
-        animator.SetBool("IsOpen", false);
+      //  animator.SetBool("IsOpen", false);
+        FindObjectOfType<PlayerInput>().PlayPlayer();
+        FindObjectOfType<DialogueListener>().enabled = false;
     }
 }

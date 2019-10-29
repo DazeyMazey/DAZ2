@@ -185,4 +185,9 @@ MonoBehaviour:
   MAX_JUMPS: 2
   GRAVITY_USE: 0
   PlayerEnabled: 0
-  Bullet: {fileID: 0}
+  Health: 3
+  gameover:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
