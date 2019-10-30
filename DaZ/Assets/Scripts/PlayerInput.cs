@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PlayerInput : MonoBehaviour
     public bool Fall;
     public bool PlayerEnabled;
     public int Health = 3;
-    public int totalItemsCollected = 0;
+    public static int totalItemsCollected = 0;
 
     // Game Objects
     public UnityEvent GameOver;
@@ -50,6 +51,7 @@ public class PlayerInput : MonoBehaviour
     private int physicsLayer = (1 << 0);
     private int interactLayer = (1 << 8);
     private int collectLayer = (1 << 9);
+    private int doorLayer = (1 << 10);
 
     RaycastHit2D hitDown;
     RaycastHit2D hitDown2;
@@ -181,7 +183,7 @@ public class PlayerInput : MonoBehaviour
         this.transform.Translate((HorizontalMovement * WALKSPEED) + object_velocity);
         CheckCollisions();
         CheckCollectables();
-     
+        CheckDoor();
     }
 
     // Raycast checkers
@@ -320,6 +322,30 @@ public class PlayerInput : MonoBehaviour
             CollectCollectable(hitUptemp);
         }
     }
+    private void CheckDoor()
+    {
+        hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, doorLayer);
+        hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, doorLayer);
+        RaycastHit2D hitDowntemp = Physics2D.Raycast(transform.position, collisionDown, detectiondistanceY, doorLayer);
+        RaycastHit2D hitUptemp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, doorLayer);
+
+        if (hitLeft && hitLeft.collider.CompareTag("Door"))
+        {
+            NextLevel(hitLeft);
+        }
+        else if (hitRight && hitRight.collider.CompareTag("Door"))
+        {
+            NextLevel(hitRight);
+        }
+        else if (hitDowntemp && hitDowntemp.collider.CompareTag("Door"))
+        {
+            NextLevel(hitDowntemp);
+        }
+        else if (hitUptemp && hitUptemp.collider.CompareTag("Door"))
+        {
+            NextLevel(hitUptemp);
+        }
+    }
     private RaycastHit2D InteractionChecker()
     {
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, interactLayer);
@@ -366,6 +392,10 @@ public class PlayerInput : MonoBehaviour
     {
         hit.collider.SendMessageUpwards("destroy", SendMessageOptions.DontRequireReceiver);
         totalItemsCollected++;
+    }
+    private void NextLevel(RaycastHit2D hit)
+    {
+        hit.collider.SendMessageUpwards("NextLevel", totalItemsCollected,SendMessageOptions.DontRequireReceiver);
     }
    
 

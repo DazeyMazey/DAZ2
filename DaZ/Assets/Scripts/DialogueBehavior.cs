@@ -63,6 +63,6 @@ public class DialogueBehavior : MonoBehaviour
         Debug.Log("end of conversation");
       //  animator.SetBool("IsOpen", false);
         FindObjectOfType<PlayerInput>().PlayPlayer();
-        FindObjectOfType<DialogueListener>().enabled = false;
+        FindObjectOfType<DialogueListener>().Dialogueenabled = false;
     }
 }
