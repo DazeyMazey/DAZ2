@@ -9,6 +9,6 @@ public class DialogueTrigger : MonoBehaviour
     public void interact()
     {
         FindObjectOfType<DialogueBehavior>().StartDialogue(dialogue);
-        //FindObjectOfType<DialogueListener>().enabled = true;
+        FindObjectOfType<DialogueListener>().Dialogueenabled = true;
     }
 }

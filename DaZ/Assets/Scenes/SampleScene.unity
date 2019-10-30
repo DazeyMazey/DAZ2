@@ -199,7 +199,6 @@ GameObject:
   - component: {fileID: 89491094}
   - component: {fileID: 89491093}
   - component: {fileID: 89491092}
-  - component: {fileID: 89491097}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -304,19 +303,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &89491097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89491091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a109201db5768b8479d2b6d01132526d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dialogueenabled: 0
 --- !u!1 &196506337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,6 +1102,19 @@ MonoBehaviour:
     - This is a test
     - This is also a test
     - Lo and behold, another test.
+--- !u!114 &655990297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655990295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a109201db5768b8479d2b6d01132526d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialogueenabled: 0
 --- !u!61 &655990298
 BoxCollider2D:
   m_ObjectHideFlags: 0
