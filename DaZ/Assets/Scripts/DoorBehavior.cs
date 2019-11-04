@@ -13,7 +13,7 @@ public class DoorBehavior : MonoBehaviour
     {
         if (totalItemsCollected >= requiredNumber)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-       
+        
             // we could have a text box or something of the like pop up
     }
 }
