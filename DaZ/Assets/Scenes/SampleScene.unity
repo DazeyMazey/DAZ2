@@ -1733,8 +1733,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1248055351}
-  - {fileID: 1913498690}
   - {fileID: 1718012220}
+  - {fileID: 1913498690}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -33906,7 +33906,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1177209573}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1718012221
 TilemapRenderer:
@@ -111563,7 +111563,9 @@ GameObject:
   - component: {fileID: 1913498693}
   - component: {fileID: 1913498692}
   - component: {fileID: 1913498691}
-  m_Layer: 0
+  - component: {fileID: 1913498694}
+  - component: {fileID: 1913498695}
+  m_Layer: 11
   m_Name: Hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
@@ -111582,7 +111584,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1177209573}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!19719996 &1913498691
 TilemapCollider2D:
@@ -111708,20 +111710,56 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: 0, y: -5, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 0, y: -4, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 0, y: -3, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 0, y: -2, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 6
-    m_Data: {fileID: 11400000, guid: 62b3cf83880c6d8408b81512dec6577b, type: 2}
+  - m_RefCount: 10
+    m_Data: {fileID: 11400000, guid: 487ba3cf6964804438d85e9f9d4e7e29, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 6
-    m_Data: {fileID: -6761938420964771148, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
+  - m_RefCount: 10
+    m_Data: {fileID: 2333874723133794383, guid: 21098e20032136943ae32a6a259fabd9,
       type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 6
+  - m_RefCount: 10
     m_Data:
       e00: 1
       e01: 0
@@ -111740,7 +111778,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 6
+  - m_RefCount: 10
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -111765,6 +111803,38 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1913498694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913498689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f46e2bb0c32544468fde1ab0343aa2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hazard_time: 3
+  is_on: 1
+  SafeSet: {fileID: 0}
+--- !u!114 &1913498695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913498689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704b305de7f0d9c45b559ef9dac4a4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TileSet:
+  - {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9, type: 3}
+  - {fileID: 7419590508823533442, guid: 21098e20032136943ae32a6a259fabd9, type: 3}
+  - {fileID: 2333874723133794383, guid: 21098e20032136943ae32a6a259fabd9, type: 3}
+  animateSpeed: 0.1
 --- !u!1001 &1932192160
 PrefabInstance:
   m_ObjectHideFlags: 0
