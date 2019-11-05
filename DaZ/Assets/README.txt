@@ -8,7 +8,8 @@ to do this though, ill need to change the tag of the object so the player can pa
 I turn on and off the layer as a whole to make the images disappear, which is nice for letting the player know that it's safe
 
 I ended up using a array sweep and checking if each tile has a non null sprite, if it has a sprite
-it changes it.
+it changes it. Trying to fix merge issues
+
 
 To make an object a hazard:
 1. give it the Hazard Tag
