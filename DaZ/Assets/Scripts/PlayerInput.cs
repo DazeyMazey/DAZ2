@@ -53,6 +53,7 @@ public class PlayerInput : MonoBehaviour
     private int interactLayer = (1 << 8);
     private int collectLayer = (1 << 9);
     private int doorLayer = (1 << 10);
+    private int hazardLayer = (1 << 11);
 
     RaycastHit2D hitDown;
     RaycastHit2D hitDown2;
@@ -184,6 +185,7 @@ public class PlayerInput : MonoBehaviour
         //Move Character
         this.transform.Translate((HorizontalMovement * WALKSPEED) + object_velocity);
         CheckCollisions();
+        CheckDamage();
         CheckCollectables();
         CheckDoor();
     }
@@ -203,35 +205,29 @@ public class PlayerInput : MonoBehaviour
         if (hitLeft)
         {
             OnWallLeftPhysics(hitLeft);
-            CheckDamage(hitLeft);
         }
         else if (hitUpLeft && !hitUpRight && Fall)
         {
             OnWallLeftPhysics(hitUpLeft);
-            CheckDamage(hitUpLeft);
         }
         else if (hitDownLeft && Fall && !hitDownRight)
         {
             OnWallLeftPhysics(hitDownLeft);
-            CheckDamage(hitDownLeft);
         }
 
         // checking for right walls ---
         if (hitRight)
         {
             OnWallRightPhysics(hitRight);
-            CheckDamage(hitRight);
         }
         else if (!hitUpLeft && hitUpRight && Fall)
         {
             OnWallRightPhysics(hitUpRight);
-            CheckDamage(hitUpRight);
         }
         else if (hitDownRight && Fall & !hitDownLeft)
         {
             //Debug.Log("DownLeft");
             OnWallRightPhysics(hitDownRight);
-            CheckDamage(hitDownRight);
         }
 
         // checking for Ground and Ceiling ---
@@ -246,20 +242,14 @@ public class PlayerInput : MonoBehaviour
         if (hitDown)
         {
             OnGroundPhysics(hitDown);
-            CheckDamage(hitDown);
-
         }
         else if (hitDown2)
         {
             OnGroundPhysics(hitDown2);
-            CheckDamage(hitDown2);
-
         }
         else if (hitDown3)
         {
             OnGroundPhysics(hitDown3);
-            CheckDamage(hitDown3);
-
         }
         else
         {
@@ -270,17 +260,14 @@ public class PlayerInput : MonoBehaviour
         if (hitUp)
         {
             OnCeilingPhysics(hitUp);
-            CheckDamage(hitUp);
         }
         else if (hitUp2)
         {
             OnCeilingPhysics(hitUp2);
-            CheckDamage(hitUp2);
         }
         else if (hitUp3)
         {
             OnCeilingPhysics(hitUp3);
-            CheckDamage(hitUp3);
         }
 
 
@@ -290,9 +277,47 @@ public class PlayerInput : MonoBehaviour
             GravCalc();
         }
     }
-    public void CheckDamage(RaycastHit2D ray)
+    public void CheckDamage()
     {
-        if (ray.collider.CompareTag("Hazard"))
+        hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, hazardLayer);
+        hitUpLeft = Physics2D.Raycast(transform.position + heightVector, collisionLeft, detectiondistanceX, hazardLayer);
+        hitDownLeft = Physics2D.Raycast(transform.position - heightVector, collisionLeft, detectiondistanceX, hazardLayer);
+        hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, hazardLayer);
+        hitUpRight = Physics2D.Raycast(transform.position + heightVector, collisionRight, detectiondistanceX, hazardLayer);
+        hitDownRight = Physics2D.Raycast(transform.position - heightVector, collisionRight, detectiondistanceX, hazardLayer);
+        hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY, hazardLayer);
+        hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, hazardLayer);
+
+
+        if (hitLeft && hitLeft.collider.CompareTag("Hazard"))
+        {
+            DamagePlayer();
+        }
+        else if (hitUpLeft && hitUpLeft.collider.CompareTag("Hazard"))
+        {
+            DamagePlayer();
+        }
+        else if (hitDownLeft && hitDownLeft.collider.CompareTag("Hazard"))
+        {
+            DamagePlayer();
+        }
+        else if (hitRight && hitRight.collider.CompareTag("Hazard"))
+        {
+            DamagePlayer();
+        }
+        else if (hitUpRight && hitUpRight.collider.CompareTag("Hazard"))
+        {
+            DamagePlayer();
+        }
+        else if (hitDownRight && hitDown.collider.CompareTag("Hazard"))
+        {
+            DamagePlayer();
+        }
+        else if (hitUp && hitUp.collider.CompareTag("Hazard"))
+        {
+            DamagePlayer();
+        }
+        else if (hitDown && hitDown.collider.CompareTag("Hazard"))
         {
             DamagePlayer();
         }
@@ -438,7 +463,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (Health > 0)
         {
-            Health -= 1;
+            //Health -= 1;
             ResetPlayer();
         }
         else if (Health <= 0)
@@ -468,7 +493,7 @@ public class PlayerInput : MonoBehaviour
     }
     private void OnCeilingPhysics(RaycastHit2D hit)
     {
-        if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Ceiling"))
+        if (hit.collider.CompareTag("Ground"))
         {
             object_velocity = Vector2.zero;
             transform.position = new Vector3(transform.position.x, hit.point.y - height);
