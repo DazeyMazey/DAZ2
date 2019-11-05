@@ -11,6 +11,8 @@ public class DialogueBehavior : MonoBehaviour
    // public Animator animator;
 
     private Queue<string> sentences; // list of words
+    private _Dialogue[] dialogues;
+    public int i;
 
     private _Dialogue[] dialogues;
     private int i;
@@ -22,14 +24,17 @@ public class DialogueBehavior : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(_Dialogue dialogue)
+    public void StartDialogue(_Dialogue[] dialogue, int index)
     {
-     //   animator.SetBool("IsOpen", true);
+        //   animator.SetBool("IsOpen", true);
+        dialogues = dialogue;
+        i = index;
+
 
         sentences.Clear();
-        nameText.text = dialogue.names[0];
+        nameText.text = dialogue[i].name;
 
-        foreach (string item in dialogue.sentences)
+        foreach (string item in dialogue[i].sentences)
         {
             sentences.Enqueue(item);
         }
@@ -64,9 +69,13 @@ public class DialogueBehavior : MonoBehaviour
 
     private void EndDialogue()
     {
-        Debug.Log("end of conversation");
-      //  animator.SetBool("IsOpen", false);
-        FindObjectOfType<PlayerInput>().PlayPlayer();
-        FindObjectOfType<DialogueListener>().Dialogueenabled = false;
+        //  animator.SetBool("IsOpen", false);
+        if (i < dialogues.Length)
+            StartDialogue(dialogues, ++i);
+        else
+        {
+            FindObjectOfType<PlayerInput>().PlayPlayer();
+            FindObjectOfType<DialogueListener>().Dialogueenabled = false;
+        }
     }
 }
