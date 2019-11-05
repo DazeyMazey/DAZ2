@@ -14,6 +14,7 @@ public class DialogueBehavior : MonoBehaviour
     private _Dialogue[] dialogues;
     public int i;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,7 +67,7 @@ public class DialogueBehavior : MonoBehaviour
     private void EndDialogue()
     {
         //  animator.SetBool("IsOpen", false);
-        if (i < dialogues.Length)
+        if (i < dialogues.Length-1)
             StartDialogue(dialogues, ++i);
         else
         {
