@@ -178,15 +178,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JUMPPOWER: 0.4
   WALKSPEED: 0.3
+  Fall: 0
   GRAVITYMOD: -0.02
   INITIALVELOCITY: -0.01
   MAX_FALLSPEED: 1
   MAX_JUMPS: 2
   GRAVITY_USE: 0
-  Fall: 0
   PlayerEnabled: 0
   Health: 3
-  GameOver:
+  gameover:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,

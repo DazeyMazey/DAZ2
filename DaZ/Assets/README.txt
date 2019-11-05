@@ -24,7 +24,6 @@ To make an object a collectable:
 1. Give it the Collectable Tag
 2. Place it on the Collectable Layer
 3. Make sure it has a collider, box2D or tileMap work well
-4. don't forget to add the Collectable Script to it.
 
 To make a door object:
 1. Give it the Door Tag
