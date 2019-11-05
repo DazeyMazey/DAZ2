@@ -7,10 +7,18 @@ Sorry for the late entry, but for today I'm implementing the hazards. for hazard
 to do this though, ill need to change the tag of the object so the player can pass through unimpeded by damage, etc.
 I turn on and off the layer as a whole to make the images disappear, which is nice for letting the player know that it's safe
 
+I ended up using a array sweep and checking if each tile has a non null sprite, if it has a sprite
+it changes it.
+
 To make an object a hazard:
 1. give it the Hazard Tag
 2. Place it on the Hazard Layer
 3. If you want a fancy hazard, please attach one of the Hazard Behavior scripts to it
+
+To make a Timer Hazard
+1. make normal hazard
+2. add the environment_hazard_timer script
+3. set timer delay
 
 To make an object a collectable:
 1. Give it the Collectable Tag

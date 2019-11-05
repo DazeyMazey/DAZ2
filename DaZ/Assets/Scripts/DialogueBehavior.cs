@@ -23,7 +23,7 @@ public class DialogueBehavior : MonoBehaviour
      //   animator.SetBool("IsOpen", true);
 
         sentences.Clear();
-        nameText.text = dialogue.name;
+        nameText.text = dialogue.names[0];
 
         foreach (string item in dialogue.sentences)
         {
