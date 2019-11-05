@@ -23,6 +23,7 @@ public class PlayerInput : MonoBehaviour
     public static int totalItemsCollected = 0;
 
     // Game Objects
+    public Animator Animator;
     public UnityEvent GameOver;
 
     // player movement vectors
@@ -146,6 +147,7 @@ public class PlayerInput : MonoBehaviour
             spriteR.flipX = spriteR.flipX;
         }
 
+        Animator.SetFloat("Speed", Mathf.Abs(HorizontalMovement.x));
 
         float aimY = Input.GetAxis("Vertical");
         float aimX = HorizontalMovement.x;

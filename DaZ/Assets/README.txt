@@ -1,6 +1,7 @@
 
 10/15/2019
 For the Dialogue I'm following a tutorial from here: https://www.youtube.com/watch?v=_nRzoTzeyxU
+Animation tutorial here: https://www.youtube.com/watch?v=hkaysu1Z-N8&t=641s
 
 To make an object a hazard:
 1. give it the Hazard Tag
