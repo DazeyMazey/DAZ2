@@ -11,11 +11,10 @@ public class DialogueBehavior : MonoBehaviour
    // public Animator animator;
 
     private Queue<string> sentences; // list of words
-<<<<<<< Updated upstream
-=======
+
     private _Dialogue[] dialogues;
     private int i;
->>>>>>> Stashed changes
+
 
     // Start is called before the first frame update
     void Start()
