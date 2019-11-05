@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +11,6 @@ public class DialogueBehavior : MonoBehaviour
     public Animator animator;
 
     private Queue<string> sentences; // list of words
-    private _Dialogue[] dialogues;
-    public int i;
 
     // Start is called before the first frame update
     void Start()
@@ -20,17 +18,18 @@ public class DialogueBehavior : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(_Dialogue[] dialogue, int index)
+    public void StartDialogue(_Dialogue dialogue)
     {
+
            animator.SetBool("is_open", true);
         dialogues = dialogue;
         i = index;
 
 
         sentences.Clear();
-        nameText.text = dialogue[i].name;
+        nameText.text = dialogue.names[0];
 
-        foreach (string item in dialogue[i].sentences)
+        foreach (string item in dialogue.sentences)
         {
             sentences.Enqueue(item);
         }
@@ -65,6 +64,7 @@ public class DialogueBehavior : MonoBehaviour
 
     private void EndDialogue()
     {
+
           animator.SetBool("is_open", false);
         if (i < dialogues.Length)
             StartDialogue(dialogues, ++i);
@@ -73,5 +73,6 @@ public class DialogueBehavior : MonoBehaviour
             FindObjectOfType<PlayerInput>().PlayPlayer();
             FindObjectOfType<DialogueListener>().Dialogueenabled = false;
         }
+
     }
 }
