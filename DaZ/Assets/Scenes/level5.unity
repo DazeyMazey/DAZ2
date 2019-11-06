@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 160076583}
   - component: {fileID: 160076582}
   - component: {fileID: 160076581}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: smoke hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 4
-    m_Data: {fileID: 8726148449916930910, guid: 2c77e3d7c01507e45814602c3a8ff859,
+    m_Data: {fileID: 2828077047651648745, guid: 2c77e3d7c01507e45814602c3a8ff859,
       type: 3}
   m_TileMatrixArray:
   - m_RefCount: 4
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 550502143}
   - component: {fileID: 550502142}
   - component: {fileID: 550502141}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: electric hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
@@ -30308,7 +30308,7 @@ GameObject:
   - component: {fileID: 2069252059}
   - component: {fileID: 2069252058}
   - component: {fileID: 2069252061}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: fire hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
@@ -30402,7 +30402,7 @@ Tilemap:
   - first: {x: -1, y: -1, z: 0}
     second:
       m_TileIndex: 2
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -30411,7 +30411,7 @@ Tilemap:
   - first: {x: 0, y: -1, z: 0}
     second:
       m_TileIndex: 2
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -30420,7 +30420,7 @@ Tilemap:
   - first: {x: 15, y: -1, z: 0}
     second:
       m_TileIndex: 2
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -30429,7 +30429,7 @@ Tilemap:
   - first: {x: 16, y: -1, z: 0}
     second:
       m_TileIndex: 2
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -30448,11 +30448,11 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 4
+    m_Data: {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9,
+      type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 4
-    m_Data: {fileID: 7419590508823533442, guid: 21098e20032136943ae32a6a259fabd9,
-      type: 3}
   m_TileMatrixArray:
   - m_RefCount: 4
     m_Data:

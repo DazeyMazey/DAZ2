@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 270946537}
   - component: {fileID: 270946539}
   - component: {fileID: 270946540}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: fire hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}

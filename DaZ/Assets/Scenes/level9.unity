@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 72602018}
   - component: {fileID: 72602020}
   - component: {fileID: 72602021}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: smoke hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 6
-    m_Data: {fileID: 2828077047651648745, guid: 2c77e3d7c01507e45814602c3a8ff859,
+    m_Data: {fileID: -8044494511525273312, guid: 2c77e3d7c01507e45814602c3a8ff859,
       type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -5493,15 +5493,6 @@ Tilemap:
     second:
       m_TileIndex: 4
       m_TileSpriteIndex: 4
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: 5, y: -5, z: 0}
-    second:
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -12268,7 +12259,7 @@ Tilemap:
       m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 1168
+  - m_RefCount: 1167
     m_Data: {fileID: 11400000, guid: dda1ff6baa989eb41831a914e0876f91, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 05efe2e5b765df841a906e85265754a9, type: 2}
@@ -12309,7 +12300,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: cf8ebb7eb1bd14cbc8ff153664e3c963, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1168
+  - m_RefCount: 1167
     m_Data: {fileID: -1514167722224140890, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
       type: 3}
   - m_RefCount: 2
@@ -12369,7 +12360,7 @@ Tilemap:
     m_Data: {fileID: 1190543688147934213, guid: 8924a0bff83db4dda9b111753b967d0a,
       type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1266
+  - m_RefCount: 1265
     m_Data:
       e00: 1
       e01: 0
@@ -12388,7 +12379,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1266
+  - m_RefCount: 1265
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}

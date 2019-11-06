@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 264702953}
   - component: {fileID: 264702952}
   - component: {fileID: 264702951}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: smoke hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 575811483}
   - component: {fileID: 575811485}
   - component: {fileID: 575811486}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: fire hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}

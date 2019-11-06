@@ -17173,7 +17173,7 @@ GameObject:
   - component: {fileID: 852751763}
   - component: {fileID: 852751762}
   - component: {fileID: 852751761}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: smoke hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
@@ -17267,7 +17267,7 @@ Tilemap:
   - first: {x: -3, y: -4, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17276,7 +17276,7 @@ Tilemap:
   - first: {x: -2, y: -4, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17285,7 +17285,7 @@ Tilemap:
   - first: {x: -1, y: -4, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17294,7 +17294,7 @@ Tilemap:
   - first: {x: 0, y: -4, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17307,11 +17307,11 @@ Tilemap:
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: aac8fe9078c3f3e4e9879e69a761c858, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 4
+    m_Data: {fileID: -8044494511525273312, guid: 2c77e3d7c01507e45814602c3a8ff859,
+      type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 4
-    m_Data: {fileID: 8726148449916930910, guid: 2c77e3d7c01507e45814602c3a8ff859,
-      type: 3}
   m_TileMatrixArray:
   - m_RefCount: 4
     m_Data:
@@ -17441,7 +17441,7 @@ GameObject:
   - component: {fileID: 1306338071}
   - component: {fileID: 1306338073}
   - component: {fileID: 1306338074}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: electric hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}

@@ -22434,7 +22434,7 @@ GameObject:
   - component: {fileID: 1487834376}
   - component: {fileID: 1487834375}
   - component: {fileID: 1487834374}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: electric hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
@@ -22832,7 +22832,7 @@ GameObject:
   - component: {fileID: 1763882732}
   - component: {fileID: 1763882731}
   - component: {fileID: 1763882734}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: fire hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
