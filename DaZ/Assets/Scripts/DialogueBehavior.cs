@@ -8,7 +8,7 @@ public class DialogueBehavior : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
-   // public Animator animator;
+    public Animator animator;
 
     private Queue<string> sentences; // list of words
     private _Dialogue[] dialogues;
@@ -22,7 +22,7 @@ public class DialogueBehavior : MonoBehaviour
 
     public void StartDialogue(_Dialogue[] dialogue, int index)
     {
-        //   animator.SetBool("IsOpen", true);
+           animator.SetBool("is_open", true);
         dialogues = dialogue;
         i = index;
 
@@ -65,7 +65,7 @@ public class DialogueBehavior : MonoBehaviour
 
     private void EndDialogue()
     {
-        //  animator.SetBool("IsOpen", false);
+          animator.SetBool("is_open", false);
         if (i < dialogues.Length)
             StartDialogue(dialogues, ++i);
         else
