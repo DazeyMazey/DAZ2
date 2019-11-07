@@ -377,7 +377,7 @@ Tilemap:
   - first: {x: 0, y: 6, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -386,7 +386,7 @@ Tilemap:
   - first: {x: 1, y: 6, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -399,11 +399,11 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 7db5ea3f11e85cd48a03cb226a6ff9ab, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 2
-    m_Data: {fileID: 7419590508823533442, guid: 21098e20032136943ae32a6a259fabd9,
-      type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9,
+      type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -640,9 +640,9 @@ GameObject:
   - component: {fileID: 379123189}
   - component: {fileID: 379123188}
   - component: {fileID: 379123187}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPC2
-  m_TagString: Untagged
+  m_TagString: interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1176,9 +1176,9 @@ GameObject:
   - component: {fileID: 1468140743}
   - component: {fileID: 1468140742}
   - component: {fileID: 1468140741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

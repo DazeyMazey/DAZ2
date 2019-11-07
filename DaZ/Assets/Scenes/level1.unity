@@ -353,7 +353,7 @@ Tilemap:
   - first: {x: 7, y: 0, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -362,7 +362,7 @@ Tilemap:
   - first: {x: 8, y: 0, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -371,7 +371,7 @@ Tilemap:
   - first: {x: 9, y: 0, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -452,7 +452,7 @@ Tilemap:
   - first: {x: 1, y: 1, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -461,7 +461,7 @@ Tilemap:
   - first: {x: 2, y: 1, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -470,7 +470,7 @@ Tilemap:
   - first: {x: 3, y: 1, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -485,13 +485,13 @@ Tilemap:
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: aac8fe9078c3f3e4e9879e69a761c858, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 6
+    m_Data: {fileID: 7419590508823533442, guid: 21098e20032136943ae32a6a259fabd9,
+      type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 3
-    m_Data: {fileID: 8138688763932985303, guid: 9b758ed89de970046b5109b95e9fd299,
-      type: 3}
-  - m_RefCount: 11
-    m_Data: {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9,
+  - m_RefCount: 8
+    m_Data: {fileID: -8044494511525273312, guid: 2c77e3d7c01507e45814602c3a8ff859,
       type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -37934,7 +37934,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 679373db8cdac63418ec5ecd72bc4a8b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.017
+  m_Volume: 0.084
   m_Pitch: 1
   Loop: 0
   Mute: 0
