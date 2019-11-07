@@ -17710,8 +17710,9 @@ GameObject:
   - component: {fileID: 1438377066}
   - component: {fileID: 1438377065}
   - component: {fileID: 1438377067}
-  m_Layer: 0
-  m_Name: hazards
+  - component: {fileID: 1438377068}
+  m_Layer: 11
+  m_Name: fire hazards
   m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17815,7 +17816,7 @@ Tilemap:
   - first: {x: 2, y: -3, z: 0}
     second:
       m_TileIndex: 5
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17851,7 +17852,7 @@ Tilemap:
   - first: {x: 10, y: -3, z: 0}
     second:
       m_TileIndex: 5
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17874,13 +17875,12 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 2
-    m_Data: {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9,
-      type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 5
     m_Data: {fileID: 7419590508823533442, guid: 21098e20032136943ae32a6a259fabd9,
       type: 3}
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data: {fileID: 2333874723133794383, guid: 21098e20032136943ae32a6a259fabd9,
       type: 3}
   m_TileMatrixArray:

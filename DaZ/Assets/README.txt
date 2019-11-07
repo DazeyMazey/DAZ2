@@ -1,6 +1,7 @@
 
 10/15/2019
 For the Dialogue I'm following a tutorial from here: https://www.youtube.com/watch?v=_nRzoTzeyxU
+Animation tutorial here: https://www.youtube.com/watch?v=hkaysu1Z-N8&t=641s
 
 11/2/2019
 Sorry for the late entry, but for today I'm implementing the hazards. for hazards I'm using a looping invoke that calls an on off switch essentially.
