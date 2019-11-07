@@ -22,7 +22,7 @@ public class DialogueBehavior : MonoBehaviour
 
     public void StartDialogue(_Dialogue[] dialogue, int index)
     {
-           animator.SetBool("is_open", true);
+        animator.SetBool("is_open", true);
         dialogues = dialogue;
         i = index;
 
@@ -65,7 +65,7 @@ public class DialogueBehavior : MonoBehaviour
 
     private void EndDialogue()
     {
-          animator.SetBool("is_open", false);
+        animator.SetBool("is_open", false);
         if (i < dialogues.Length -1)
             StartDialogue(dialogues, ++i);
         else

@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     public static int totalItemsCollected = 0;
 
     // Game Objects
-    public Animator Animator;
+    private Animator Animator;
     public UnityEvent GameOver;
 
     // player movement vectors
@@ -94,6 +94,8 @@ public class PlayerInput : MonoBehaviour
         Fall = true;
         acceleration = new Vector3(0, 1) * GRAVITYMOD;
         object_velocity = Vector3.zero;
+
+        Animator = GetComponent<Animator>();
 
         width = (GetComponent<SpriteRenderer>().bounds.size.x / 2);
         height = (GetComponent<SpriteRenderer>().bounds.size.y / 2);

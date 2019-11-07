@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4438341689791066105}
   - component: {fileID: 4438341689791066104}
   - component: {fileID: 4438341689791066108}
-  - component: {fileID: -7292000645552832494}
+  - component: {fileID: 375258329}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -192,6 +192,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!95 &375258329
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

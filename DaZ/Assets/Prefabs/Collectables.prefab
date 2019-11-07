@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6262100866460279432}
   - component: {fileID: 8662826120522020513}
   - component: {fileID: -6291707191055640550}
+  - component: {fileID: 2944541617069036814}
   m_Layer: 9
   m_Name: Collectables
   m_TagString: collectable
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4599117658287031184}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.869999, y: 13.099998, z: 0}
   m_LocalScale: {x: 9, y: 9, z: 1}
   m_Children: []
@@ -106,3 +107,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2621951, y: 0.2682927}
   m_EdgeRadius: 0
+--- !u!114 &2944541617069036814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4599117658287031184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59507e89187eaa4aa29eb62aab38d3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
