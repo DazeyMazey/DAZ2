@@ -9,6 +9,7 @@ TagManager:
   - interact
   - collectable
   - Door
+  - music
   layers:
   - Default
   - TransparentFX
