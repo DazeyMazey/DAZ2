@@ -66,7 +66,7 @@ public class DialogueBehavior : MonoBehaviour
     private void EndDialogue()
     {
           animator.SetBool("is_open", false);
-        if (i < dialogues.Length)
+        if (i < dialogues.Length -1)
             StartDialogue(dialogues, ++i);
         else
         {
