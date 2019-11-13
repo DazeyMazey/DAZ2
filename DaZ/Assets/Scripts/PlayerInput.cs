@@ -270,13 +270,12 @@ public class PlayerInput : MonoBehaviour
     public void CheckDamage()
     {
         hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX * hitboxMod, hazardLayer);
-        hitUpLeft = Physics2D.Raycast(transform.position + heightVector, collisionLeft, detectiondistanceX * hitboxMod, hazardLayer);
-        hitDownLeft = Physics2D.Raycast(transform.position - heightVector, collisionLeft, detectiondistanceX * hitboxMod, hazardLayer);
+        hitUpLeft = Physics2D.Raycast(transform.position + heightVector * hitboxMod, collisionLeft, detectiondistanceX * hitboxMod, hazardLayer);
+        hitDownLeft = Physics2D.Raycast(transform.position - heightVector * hitboxMod, collisionLeft, detectiondistanceX * hitboxMod, hazardLayer);
+       
         hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX * hitboxMod, hazardLayer);
-        hitUpRight = Physics2D.Raycast(transform.position + heightVector, collisionRight, detectiondistanceX * hitboxMod, hazardLayer);
-        hitDownRight = Physics2D.Raycast(transform.position - heightVector, collisionRight, detectiondistanceX * hitboxMod, hazardLayer);
-        hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY * hitboxMod, hazardLayer);
-        hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY * hitboxMod, hazardLayer);
+        hitUpRight = Physics2D.Raycast(transform.position + heightVector * hitboxMod, collisionRight, detectiondistanceX * hitboxMod, hazardLayer);
+        hitDownRight = Physics2D.Raycast(transform.position - heightVector * hitboxMod, collisionRight, detectiondistanceX * hitboxMod, hazardLayer);
 
 
         if (hitLeft && hitLeft.collider.CompareTag("Hazard"))
@@ -300,14 +299,6 @@ public class PlayerInput : MonoBehaviour
             DamagePlayer();
         }
         else if (hitDownRight && hitDownRight.collider.CompareTag("Hazard"))
-        {
-            DamagePlayer();
-        }
-        else if (hitUp && hitUp.collider.CompareTag("Hazard"))
-        {
-            DamagePlayer();
-        }
-        else if (hitDown && hitDown.collider.CompareTag("Hazard"))
         {
             DamagePlayer();
         }
