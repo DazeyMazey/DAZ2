@@ -48,12 +48,13 @@ public class PlayerInput : MonoBehaviour
     
     
     private Vector2 max_V;
-    private float collisionMod = 0.04f;
     private int physicsLayer = (1 << 0);
     private int interactLayer = (1 << 8);
     private int collectLayer = (1 << 9);
     private int doorLayer = (1 << 10);
     private int hazardLayer = (1 << 11);
+    private float hitboxMod = 0.2f;
+    private float collision_mod = 0.65f;
 
     RaycastHit2D hitDown;
     RaycastHit2D hitDown2;
@@ -97,13 +98,13 @@ public class PlayerInput : MonoBehaviour
 
         Animator = GetComponent<Animator>();
 
-        width = (GetComponent<SpriteRenderer>().bounds.size.x / 2);
+        width = (GetComponent<SpriteRenderer>().bounds.size.x / 2) * collision_mod;
         height = (GetComponent<SpriteRenderer>().bounds.size.y / 2);
 
         spriteR = gameObject.GetComponent<SpriteRenderer>();
 
         detectiondistanceY = height;
-        detectiondistanceX = width + collisionMod;
+        detectiondistanceX = width;
 
         collisionDown = new Vector2(0, -1);
         collisionUp = new Vector2(0, 1);
@@ -112,21 +113,6 @@ public class PlayerInput : MonoBehaviour
 
         widthVector = new Vector3(width, 0);
         heightVector = new Vector3(0, height);
-
-        hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY, physicsLayer);
-        hitDown2 = Physics2D.Raycast(this.transform.position + widthVector, collisionDown, detectiondistanceY, physicsLayer);
-        hitDown3 = Physics2D.Raycast(this.transform.position - widthVector, collisionDown, detectiondistanceY, physicsLayer);
-
-        hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, physicsLayer);
-        hitUp2 = Physics2D.Raycast(transform.position + widthVector, collisionUp, detectiondistanceY, physicsLayer);
-        hitUp3 = Physics2D.Raycast(transform.position - widthVector, collisionUp, detectiondistanceY, physicsLayer);
-
-        hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, physicsLayer);
-        hitUpLeft = Physics2D.Raycast(transform.position + heightVector, collisionLeft, detectiondistanceX, physicsLayer);
-        hitDownLeft = Physics2D.Raycast(transform.position - heightVector, collisionLeft, detectiondistanceX, physicsLayer);
-        hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, physicsLayer);
-        hitUpRight = Physics2D.Raycast(transform.position + heightVector, collisionRight, detectiondistanceX, physicsLayer);
-        hitDownRight = Physics2D.Raycast(transform.position - heightVector, collisionRight, detectiondistanceX, physicsLayer);
     }
 
     // update called as much as possible
@@ -195,13 +181,14 @@ public class PlayerInput : MonoBehaviour
     // Raycast checkers
     private void CheckCollisions()
     {
-         // Detecting Collisions-- We're first casting the sides so we can do comparisons instead of prioritizing one side over another
+        // Detecting Collisions-- We're first casting the sides so we can do comparisons instead of prioritizing one side over another
         hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, physicsLayer);
         hitUpLeft = Physics2D.Raycast(transform.position + heightVector, collisionLeft, detectiondistanceX, physicsLayer);
         hitDownLeft = Physics2D.Raycast(transform.position - heightVector, collisionLeft, detectiondistanceX, physicsLayer);
         hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, physicsLayer);
         hitUpRight = Physics2D.Raycast(transform.position + heightVector, collisionRight, detectiondistanceX, physicsLayer);
         hitDownRight = Physics2D.Raycast(transform.position - heightVector, collisionRight, detectiondistanceX, physicsLayer);
+
 
         // checking for left walls ---
         if (hitLeft)
@@ -234,12 +221,12 @@ public class PlayerInput : MonoBehaviour
 
         // checking for Ground and Ceiling ---
         hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY, physicsLayer);
-        hitDown2 = Physics2D.Raycast(this.transform.position + widthVector, collisionDown, detectiondistanceY, physicsLayer);
-        hitDown3 = Physics2D.Raycast(this.transform.position - widthVector, collisionDown, detectiondistanceY, physicsLayer);
+        hitDown2 = Physics2D.Raycast(this.transform.position + widthVector * collision_mod, collisionDown, detectiondistanceY, physicsLayer);
+        hitDown3 = Physics2D.Raycast(this.transform.position - widthVector * collision_mod, collisionDown, detectiondistanceY, physicsLayer);
 
         hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, physicsLayer);
-        hitUp2 = Physics2D.Raycast(transform.position + widthVector, collisionUp, detectiondistanceY, physicsLayer);
-        hitUp3 = Physics2D.Raycast(transform.position - widthVector, collisionUp, detectiondistanceY, physicsLayer);
+        hitUp2 = Physics2D.Raycast(transform.position + widthVector * collision_mod, collisionUp, detectiondistanceY, physicsLayer);
+        hitUp3 = Physics2D.Raycast(transform.position - widthVector * collision_mod, collisionUp, detectiondistanceY, physicsLayer);
         // checks for falling and bottom collisons
         if (hitDown)
         {
@@ -278,17 +265,18 @@ public class PlayerInput : MonoBehaviour
         {
             GravCalc();
         }
+
     }
     public void CheckDamage()
     {
-        hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX, hazardLayer);
-        hitUpLeft = Physics2D.Raycast(transform.position + heightVector, collisionLeft, detectiondistanceX, hazardLayer);
-        hitDownLeft = Physics2D.Raycast(transform.position - heightVector, collisionLeft, detectiondistanceX, hazardLayer);
-        hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX, hazardLayer);
-        hitUpRight = Physics2D.Raycast(transform.position + heightVector, collisionRight, detectiondistanceX, hazardLayer);
-        hitDownRight = Physics2D.Raycast(transform.position - heightVector, collisionRight, detectiondistanceX, hazardLayer);
-        hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY, hazardLayer);
-        hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY, hazardLayer);
+        hitLeft = Physics2D.Raycast(transform.position, collisionLeft, detectiondistanceX * hitboxMod, hazardLayer);
+        hitUpLeft = Physics2D.Raycast(transform.position + heightVector, collisionLeft, detectiondistanceX * hitboxMod, hazardLayer);
+        hitDownLeft = Physics2D.Raycast(transform.position - heightVector, collisionLeft, detectiondistanceX * hitboxMod, hazardLayer);
+        hitRight = Physics2D.Raycast(transform.position, collisionRight, detectiondistanceX * hitboxMod, hazardLayer);
+        hitUpRight = Physics2D.Raycast(transform.position + heightVector, collisionRight, detectiondistanceX * hitboxMod, hazardLayer);
+        hitDownRight = Physics2D.Raycast(transform.position - heightVector, collisionRight, detectiondistanceX * hitboxMod, hazardLayer);
+        hitDown = Physics2D.Raycast(this.transform.position, collisionDown, detectiondistanceY * hitboxMod, hazardLayer);
+        hitUp = Physics2D.Raycast(transform.position, collisionUp, detectiondistanceY * hitboxMod, hazardLayer);
 
 
         if (hitLeft && hitLeft.collider.CompareTag("Hazard"))
@@ -311,7 +299,7 @@ public class PlayerInput : MonoBehaviour
         {
             DamagePlayer();
         }
-        else if (hitDownRight && hitDown.collider.CompareTag("Hazard"))
+        else if (hitDownRight && hitDownRight.collider.CompareTag("Hazard"))
         {
             DamagePlayer();
         }
