@@ -17174,6 +17174,7 @@ GameObject:
   - component: {fileID: 852751763}
   - component: {fileID: 852751762}
   - component: {fileID: 852751761}
+  - component: {fileID: 852751764}
   m_Layer: 11
   m_Name: smoke hazards
   m_TagString: Hazard
@@ -17309,7 +17310,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: aac8fe9078c3f3e4e9879e69a761c858, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 4
-    m_Data: {fileID: 2828077047651648745, guid: 2c77e3d7c01507e45814602c3a8ff859,
+    m_Data: {fileID: 8726148449916930910, guid: 2c77e3d7c01507e45814602c3a8ff859,
       type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -17360,6 +17361,23 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &852751764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852751759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704b305de7f0d9c45b559ef9dac4a4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TileSet:
+  - {fileID: 2828077047651648745, guid: 2c77e3d7c01507e45814602c3a8ff859, type: 3}
+  - {fileID: 8726148449916930910, guid: 2c77e3d7c01507e45814602c3a8ff859, type: 3}
+  - {fileID: -8044494511525273312, guid: 2c77e3d7c01507e45814602c3a8ff859, type: 3}
+  animateSpeed: 0.1
 --- !u!1 &1144830512
 GameObject:
   m_ObjectHideFlags: 0
@@ -17673,7 +17691,7 @@ Tilemap:
   - first: {x: 6, y: 3, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17682,7 +17700,7 @@ Tilemap:
   - first: {x: 7, y: 3, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17691,7 +17709,7 @@ Tilemap:
   - first: {x: 10, y: 3, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17700,7 +17718,7 @@ Tilemap:
   - first: {x: 11, y: 3, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17709,7 +17727,7 @@ Tilemap:
   - first: {x: 12, y: 3, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17718,7 +17736,7 @@ Tilemap:
   - first: {x: 13, y: 3, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17727,7 +17745,7 @@ Tilemap:
   - first: {x: 14, y: 3, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -17740,11 +17758,11 @@ Tilemap:
   - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: dcddf836866fc7e45906e70ae4907a6e, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 7
+    m_Data: {fileID: -592796392653626989, guid: 9b758ed89de970046b5109b95e9fd299,
+      type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 7
-    m_Data: {fileID: 8138688763932985303, guid: 9b758ed89de970046b5109b95e9fd299,
-      type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9,
       type: 3}
@@ -17828,7 +17846,7 @@ MonoBehaviour:
   - {fileID: -6790141095827271024, guid: 9b758ed89de970046b5109b95e9fd299, type: 3}
   - {fileID: -592796392653626989, guid: 9b758ed89de970046b5109b95e9fd299, type: 3}
   - {fileID: 3750480065366021142, guid: 9b758ed89de970046b5109b95e9fd299, type: 3}
-  animateSpeed: 0
+  animateSpeed: 0.1
 --- !u!1001 &1398973693
 PrefabInstance:
   m_ObjectHideFlags: 0

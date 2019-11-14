@@ -3713,7 +3713,7 @@ GameObject:
   - component: {fileID: 1201980168}
   - component: {fileID: 1201980169}
   m_Layer: 11
-  m_Name: fire hazards
+  m_Name: electric hazard
   m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3789,7 +3789,7 @@ Tilemap:
   m_Tiles:
   - first: {x: 2, y: -3, z: 0}
     second:
-      m_TileIndex: 0
+      m_TileIndex: 1
       m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
@@ -3798,7 +3798,7 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 3, y: -3, z: 0}
     second:
-      m_TileIndex: 0
+      m_TileIndex: 1
       m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
@@ -3807,7 +3807,7 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 4, y: -3, z: 0}
     second:
-      m_TileIndex: 0
+      m_TileIndex: 1
       m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
@@ -3816,15 +3816,15 @@ Tilemap:
       m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 3
-    m_Data: {fileID: 11400000, guid: dcddf836866fc7e45906e70ae4907a6e, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: 2db0aa09c4215ff4f83a804858bbba65, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 3
-    m_Data: {fileID: 8138688763932985303, guid: 9b758ed89de970046b5109b95e9fd299,
+    m_Data: {fileID: -6790141095827271024, guid: 9b758ed89de970046b5109b95e9fd299,
       type: 3}
   m_TileMatrixArray:
   - m_RefCount: 3
@@ -3902,9 +3902,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileSet:
-  - {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9, type: 3}
-  - {fileID: 7419590508823533442, guid: 21098e20032136943ae32a6a259fabd9, type: 3}
-  - {fileID: 2333874723133794383, guid: 21098e20032136943ae32a6a259fabd9, type: 3}
+  - {fileID: 8138688763932985303, guid: 9b758ed89de970046b5109b95e9fd299, type: 3}
+  - {fileID: -6790141095827271024, guid: 9b758ed89de970046b5109b95e9fd299, type: 3}
+  - {fileID: -592796392653626989, guid: 9b758ed89de970046b5109b95e9fd299, type: 3}
+  - {fileID: 3750480065366021142, guid: 9b758ed89de970046b5109b95e9fd299, type: 3}
   animateSpeed: 0.1
 --- !u!1 &1370130008
 GameObject:
