@@ -11,6 +11,10 @@ I turn on and off the layer as a whole to make the images disappear, which is ni
 I ended up using a array sweep and checking if each tile has a non null sprite, if it has a sprite
 it changes it. Trying to fix merge issues
 
+11/12/2019
+I changed up the hit boxes of the player for both physics and for the hitbox of hazards, it's a little bit smaller so the player can feel better traversing
+the stage.
+
 
 To make an object a hazard:
 1. give it the Hazard Tag
