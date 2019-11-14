@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -16,15 +17,19 @@ public class PlayerInput : MonoBehaviour
     public float MAX_FALLSPEED = 1;
     public int MAX_JUMPS = 2;
     public bool GRAVITY_USE;
+    public bool Gravity_Inverted;
    
     public bool Fall;
     public bool PlayerEnabled;
     public int Health = 3;
+   
+    
     public static int totalItemsCollected = 0;
 
     // Game Objects
     private Animator Animator;
     public UnityEvent GameOver;
+    private Text num_item_text;
 
     // player movement vectors
     private Vector2 JumpVelocity;
@@ -46,7 +51,7 @@ public class PlayerInput : MonoBehaviour
     private Vector3 widthVector;
     private Vector3 heightVector;
     
-    
+    // Physics layer stuff
     private Vector2 max_V;
     private int physicsLayer = (1 << 0);
     private int interactLayer = (1 << 8);
@@ -56,6 +61,7 @@ public class PlayerInput : MonoBehaviour
     private float hitboxMod = 0.2f;
     private float collision_mod = 0.65f;
 
+    // Hits
     RaycastHit2D hitDown;
     RaycastHit2D hitDown2;
     RaycastHit2D hitDown3;
@@ -77,12 +83,12 @@ public class PlayerInput : MonoBehaviour
     private SpriteRenderer spriteR;
     private Vector2 PlayerSpawn;
 
-  
-    
-    
-    
-/** FUNCTIONS **/ 
-    
+    public bool PlayerCutSceneRight { get; set; }
+    public bool PlayerCutSceneLeft { get; set; }
+
+
+    /** FUNCTIONS **/
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,8 +101,11 @@ public class PlayerInput : MonoBehaviour
         Fall = true;
         acceleration = new Vector3(0, 1) * GRAVITYMOD;
         object_velocity = Vector3.zero;
+        Gravity_Inverted = false;
 
         Animator = GetComponent<Animator>();
+        num_item_text = GameObject.Find("Num_item").GetComponent<Text>();
+        num_item_text.text = totalItemsCollected.ToString();
 
         width = (GetComponent<SpriteRenderer>().bounds.size.x / 2) * collision_mod;
         height = (GetComponent<SpriteRenderer>().bounds.size.y / 2);
@@ -120,6 +129,10 @@ public class PlayerInput : MonoBehaviour
     {
         if (PlayerEnabled)
             HorizontalMovement.x = Input.GetAxis("Horizontal");
+        else if (PlayerCutSceneRight)
+            HorizontalMovement.x = 1;
+        else if (PlayerCutSceneLeft)
+            HorizontalMovement.x = -1;
         else
             HorizontalMovement.x = 0;
 
@@ -137,9 +150,6 @@ public class PlayerInput : MonoBehaviour
         }
 
         Animator.SetFloat("Speed", Mathf.Abs(HorizontalMovement.x));
-
-        float aimY = Input.GetAxis("Vertical");
-        float aimX = HorizontalMovement.x;
 
         if (Input.GetKeyDown(KeyCode.Space) && curr_jumps < MAX_JUMPS && PlayerEnabled) // handles the jumping
         {
@@ -400,6 +410,7 @@ public class PlayerInput : MonoBehaviour
     {
         hit.collider.SendMessageUpwards("destroy", SendMessageOptions.DontRequireReceiver);
         totalItemsCollected++;
+        num_item_text.text = totalItemsCollected.ToString();
     }
     private void NextLevel(RaycastHit2D hit)
     {
@@ -517,6 +528,7 @@ public class PlayerInput : MonoBehaviour
 
         object_velocity += acceleration;
         spriteR.flipY = !spriteR.flipY;
+        Gravity_Inverted = !Gravity_Inverted;
     }
 
 }
