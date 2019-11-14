@@ -16,4 +16,11 @@ public class DoorBehavior : MonoBehaviour
         
             // we could have a text box or something of the like pop up
     }
+
+    // This function makes the player walk back a couple of paces and brings up the dialogue box from Bud
+    // saying that he's going to fix DAZ no matter what and will need as many pieces as he can find
+    public void WalkPlayerBack()
+    { 
+        
+    }
 }
