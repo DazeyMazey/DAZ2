@@ -377,7 +377,7 @@ Tilemap:
   - first: {x: 0, y: 6, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -386,7 +386,7 @@ Tilemap:
   - first: {x: 1, y: 6, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -399,11 +399,11 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 7db5ea3f11e85cd48a03cb226a6ff9ab, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 2
+    m_Data: {fileID: 7419590508823533442, guid: 21098e20032136943ae32a6a259fabd9,
+      type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 2
-    m_Data: {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9,
-      type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -640,6 +640,7 @@ GameObject:
   - component: {fileID: 379123189}
   - component: {fileID: 379123188}
   - component: {fileID: 379123187}
+  - component: {fileID: 379123190}
   m_Layer: 8
   m_Name: NPC2
   m_TagString: interact
@@ -768,6 +769,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.3125}
   m_EdgeRadius: 0
+--- !u!95 &379123190
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379123184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e64e667e2cf3dc47a8dc58ea62ada10, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &979764316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,6 +1196,7 @@ GameObject:
   - component: {fileID: 1468140743}
   - component: {fileID: 1468140742}
   - component: {fileID: 1468140741}
+  - component: {fileID: 1468140744}
   m_Layer: 8
   m_Name: NPC
   m_TagString: interact
@@ -1304,6 +1325,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.3125}
   m_EdgeRadius: 0
+--- !u!95 &1468140744
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468140738}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f5c6fa9b2447d54bb06537e401cd734, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1480999089
 GameObject:
   m_ObjectHideFlags: 0
