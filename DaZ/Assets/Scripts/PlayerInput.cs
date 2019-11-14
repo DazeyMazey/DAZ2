@@ -17,18 +17,19 @@ public class PlayerInput : MonoBehaviour
     public float MAX_FALLSPEED = 1;
     public int MAX_JUMPS = 2;
     public bool GRAVITY_USE;
-    public bool Gravity_Inverted;
-   
+
     public bool Fall;
     public bool PlayerEnabled;
-    public int Health = 3;
-   
-    
+
     public static int totalItemsCollected = 0;
+
+    // animation global variables
+    public bool Gravity_Inverted;
+    public bool isJump;
+
 
     // Game Objects
     private Animator Animator;
-    public UnityEvent GameOver;
     private Text num_item_text;
 
     // player movement vectors
@@ -153,6 +154,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && curr_jumps < MAX_JUMPS && PlayerEnabled) // handles the jumping
         {
+            isJump = true;
             Jump();
             this.transform.Translate(JumpVelocity);
         }
@@ -175,6 +177,8 @@ public class PlayerInput : MonoBehaviour
                 InteractWithObject(hit);
             }
         }
+
+        isJump = (object_velocity.y >= 0) ^ Gravity_Inverted;
     }
 
     // Update is called once per frame
@@ -453,17 +457,8 @@ public class PlayerInput : MonoBehaviour
 
     public void DamagePlayer()
     {
-        if (Health > 0)
-        {
-            //Health -= 1;
-            ResetPlayer();
-        }
-        else if (Health <= 0)
-        {
-            this.enabled = false;
-            ResetPlayer();
-            GameOver.Invoke();
-        }
+        ResetPlayer();
+        // play sound if need be here:
     }
 
 
@@ -500,6 +495,7 @@ public class PlayerInput : MonoBehaviour
             curr_jumps = 0;
             transform.position = new Vector3(transform.position.x, hit.point.y + height);
             GRAVITY_USE = true;
+            isJump = false;
         }
     }
  
