@@ -179,7 +179,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         isJump = (object_velocity.y >= 0) ^ Gravity_Inverted;
-        Animator.SetBool("isJump", isJump && Fall);
+        Animator.SetBool("isJump", isJump);
     }
 
     // Update is called once per frame
