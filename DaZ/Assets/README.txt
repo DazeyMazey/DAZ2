@@ -55,3 +55,8 @@ To make a TileMap animate:
 3. add a number of frames to the TileSet Array
 4. click and drag your frames to each item
 5. set an animation speed, this is measuring in seconds, so the lower the faster it'll go
+
+To make an NPC with the E behavior:
+1. Add the E_Behavior Script to NPC
+2. Add child to NPC that is your sprite, animation, etc
+3. Set the tag of the child to ETag
