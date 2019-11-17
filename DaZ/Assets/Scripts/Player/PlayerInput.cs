@@ -173,7 +173,6 @@ public class PlayerInput : MonoBehaviour
             RaycastHit2D hit = InteractionChecker();
             if (hit && hit.transform.tag == "interact")
             {
-                Debug.Log(hit.transform.tag);
                 InteractWithObject(hit);
             }
         }
