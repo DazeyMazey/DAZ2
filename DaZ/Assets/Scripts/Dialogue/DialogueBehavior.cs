@@ -22,6 +22,12 @@ public class DialogueBehavior : MonoBehaviour
 
     public void StartDialogue(_Dialogue[] dialogue, int index)
     {
+        // for clearing the E's on screen during dialogue
+        E_Behavior[] Interactables = FindObjectsOfType<E_Behavior>();
+        foreach (E_Behavior e in Interactables)
+            e.InDialogue = true;
+
+
         animator.SetBool("is_open", true);
         dialogues = dialogue;
         i = index;
@@ -72,6 +78,9 @@ public class DialogueBehavior : MonoBehaviour
         {
             FindObjectOfType<PlayerInput>().PlayPlayer();
             FindObjectOfType<DialogueListener>().Dialogueenabled = false;
+            E_Behavior[] Interactables = FindObjectsOfType<E_Behavior>();
+            foreach (E_Behavior e in Interactables)
+                e.InDialogue = false;
         }
     }
 }
