@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class HowToPlayButton : MonoBehaviour
 {
-    public void NextScene()
+    public void GoToHowTo()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
-
 }

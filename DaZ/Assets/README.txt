@@ -15,6 +15,9 @@ it changes it. Trying to fix merge issues
 I changed up the hit boxes of the player for both physics and for the hitbox of hazards, it's a little bit smaller so the player can feel better traversing
 the stage.
 
+11/16/2019
+Organized the scripts and added menubuttons for a start, how to, and pause menu
+Using this tutorial here for hiding and making the pause menu appear: https://www.sitepoint.com/adding-pause-main-menu-and-game-over-screens-in-unity/
 
 To make an object a hazard:
 1. give it the Hazard Tag

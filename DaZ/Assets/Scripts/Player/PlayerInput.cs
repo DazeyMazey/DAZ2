@@ -463,6 +463,11 @@ public class PlayerInput : MonoBehaviour
         // play sound if need be here:
     }
 
+    public void ResetProgress()
+    {
+        totalItemsCollected = 0;
+    }
+
 
 
     /** Physics for platforming **/
