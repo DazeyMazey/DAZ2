@@ -331,17 +331,14 @@ public class PlayerInput : MonoBehaviour
         }
         else if (hitRight && hitRight.collider.CompareTag("collectable"))
         {
-            Debug.Log("Collided with Object");
             CollectCollectable(hitRight);
         }
         else if (hitDowntemp && hitDowntemp.collider.CompareTag("collectable"))
         {
-            Debug.Log("Collided with Object");
             CollectCollectable(hitDowntemp);
         }
         else if (hitUptemp && hitUptemp.collider.CompareTag("collectable"))
         {
-            Debug.Log("Collided with Object");
             CollectCollectable(hitUptemp);
         }
     }

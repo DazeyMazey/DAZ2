@@ -37585,7 +37585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 0
-  requiredNumber: 0
+  requiredNumber: 1
+  player_enter_from_left: 1
 --- !u!1 &1771078743
 GameObject:
   m_ObjectHideFlags: 0
