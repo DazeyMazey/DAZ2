@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4438341689791066108}
   - component: {fileID: 375258329}
   - component: {fileID: -6930405210617516128}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -185,6 +185,7 @@ MonoBehaviour:
   MAX_FALLSPEED: 1
   MAX_JUMPS: 2
   GRAVITY_USE: 0
+  DEAD: 0
   Fall: 0
   PlayerEnabled: 0
   Gravity_Inverted: 0
