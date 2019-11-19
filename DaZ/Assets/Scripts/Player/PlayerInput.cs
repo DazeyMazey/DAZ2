@@ -460,8 +460,8 @@ public class PlayerInput : MonoBehaviour
     private void ResetPlayer()
     {
         this.transform.position = PlayerSpawn;
-        object_velocity = Vector2.zero;
-        HorizontalMovement = Vector2.zero;
+        //object_velocity = Vector2.zero;
+        //HorizontalMovement = Vector2.zero;
         curr_jumps = 0;
         spriteR.flipY = false;
         GRAVITY_USE = false;
@@ -474,7 +474,7 @@ public class PlayerInput : MonoBehaviour
     public void DamagePlayer()
     {
         PlayerEnabled = false;
-        Invoke("ResetPlayer", 1.28f);
+        Invoke("ResetPlayer", 1.2f);
         // play sound if need be here:
     }
 
