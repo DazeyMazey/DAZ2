@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour
     public float MAX_FALLSPEED = 1;
     public int MAX_JUMPS = 2;
     public bool GRAVITY_USE;
+    public bool DEAD = false;
 
     public bool Fall;
     public bool PlayerEnabled;
@@ -295,26 +296,38 @@ public class PlayerInput : MonoBehaviour
 
         if (hitLeft && hitLeft.collider.CompareTag("Hazard"))
         {
+            DEAD = true;
+            Animator.SetBool("DEAD", DEAD);
             DamagePlayer();
         }
         else if (hitUpLeft && hitUpLeft.collider.CompareTag("Hazard"))
         {
+            DEAD = true;
+            Animator.SetBool("DEAD", DEAD);
             DamagePlayer();
         }
         else if (hitDownLeft && hitDownLeft.collider.CompareTag("Hazard"))
         {
+            DEAD = true;
+            Animator.SetBool("DEAD", DEAD);
             DamagePlayer();
         }
         else if (hitRight && hitRight.collider.CompareTag("Hazard"))
         {
+            DEAD = true;
+            Animator.SetBool("DEAD", DEAD);
             DamagePlayer();
         }
         else if (hitUpRight && hitUpRight.collider.CompareTag("Hazard"))
         {
+            DEAD = true;
+            Animator.SetBool("DEAD", DEAD);
             DamagePlayer();
         }
         else if (hitDownRight && hitDownRight.collider.CompareTag("Hazard"))
         {
+            DEAD = true;
+            Animator.SetBool("DEAD", DEAD);
             DamagePlayer();
         }
     }
@@ -452,13 +465,16 @@ public class PlayerInput : MonoBehaviour
         curr_jumps = 0;
         spriteR.flipY = false;
         GRAVITY_USE = false;
-
+        PlayerEnabled = true;
+        DEAD = false;
+        Animator.SetBool("DEAD", DEAD);
         Start();
     }
 
     public void DamagePlayer()
     {
-        ResetPlayer();
+        PlayerEnabled = false;
+        Invoke("ResetPlayer", 1.28f);
         // play sound if need be here:
     }
 
