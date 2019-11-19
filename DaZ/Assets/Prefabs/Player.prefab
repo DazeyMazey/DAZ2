@@ -185,6 +185,7 @@ MonoBehaviour:
   MAX_FALLSPEED: 1
   MAX_JUMPS: 2
   GRAVITY_USE: 0
+  DEAD: 0
   Fall: 0
   PlayerEnabled: 0
   Gravity_Inverted: 0
@@ -221,7 +222,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.053760633}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -232,5 +233,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.25}
+  m_Size: {x: 0.25, y: 0.3575212}
   m_EdgeRadius: 0
