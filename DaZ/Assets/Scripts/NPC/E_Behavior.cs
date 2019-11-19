@@ -31,8 +31,8 @@ public class E_Behavior : MonoBehaviour
         E_Object = this.transform.GetChild(0).gameObject;
         E_Object.SetActive(false);
 
-        width = (GetComponent<SpriteRenderer>().bounds.size.x);
-        height = (GetComponent<SpriteRenderer>().bounds.size.y);
+        width = (GetComponent<BoxCollider2D>().bounds.size.x);
+        height = (GetComponent<BoxCollider2D>().bounds.size.y);
 
         spriteR = gameObject.GetComponent<SpriteRenderer>();
 
