@@ -7,11 +7,12 @@ public class Fades : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private Image Fader;
+    private CanvasGroup CG; 
 
     void Start()
     {
-        Fader = this.transform.GetChild(0).GetComponent<Image>();
+        CG = this.transform.GetComponent<CanvasGroup>();
+        CG.alpha = 1;
 
         FadeOut();
     }
@@ -19,11 +20,16 @@ public class Fades : MonoBehaviour
     // The black box fades in, end of level
     public void FadeIn()
     {
-        float i = 0;
-        while (Fader.color.a < 1)
+        StartCoroutine(FadeIn_private());
+    }
+
+    private IEnumerator FadeIn_private()
+    {
+        float i = 0.01f;
+        while (CG.alpha < 1)
         {
-            Fader.color = new Color(255, 255, 255, i);
-            i += 0.1f;
+            CG.alpha += i;
+            yield return null;
         }
         FindObjectOfType<DoorBehavior>().GoNext();
     }
@@ -31,11 +37,16 @@ public class Fades : MonoBehaviour
     // The black box fades out, beginning of level
     public void FadeOut()
     {
-        float i = 0;
-        while (Fader.color.a < 1)
+        StartCoroutine(FadeOut_private());
+    }
+
+    private IEnumerator FadeOut_private()
+    {
+        float i = -0.05f;
+        while (CG.alpha > 0)
         {
-            Fader.color = new Color(255, 255, 255, i);
-            i += 0.1f;
+            CG.alpha += i;
+            yield return null;
         }
     }
 }

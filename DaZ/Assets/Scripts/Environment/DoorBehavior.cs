@@ -12,9 +12,12 @@ public class DoorBehavior : MonoBehaviour
     public bool player_enter_from_left;
 
     private _Dialogue[] go_back;
+    private Fades fader;
 
     public void Start()
     {
+        fader = GameObject.Find("Fader").GetComponent<Fades>();
+
         go_back = new _Dialogue[2];
         go_back[0] = new _Dialogue();
         go_back[0].name = "D.A.-Z";
@@ -33,7 +36,7 @@ public class DoorBehavior : MonoBehaviour
     public void NextLevel(int totalItemsCollected)
     {
         if (totalItemsCollected >= requiredNumber)
-            FindObjectOfType<Fades>().FadeOut();
+            fader.FadeIn();
         else
             WalkPlayerBack();
     }
