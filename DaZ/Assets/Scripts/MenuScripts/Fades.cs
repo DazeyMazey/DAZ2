@@ -49,4 +49,21 @@ public class Fades : MonoBehaviour
             yield return null;
         }
     }
+
+
+    public void FadeInStart()
+    {
+        StartCoroutine(FadeInStart_private());
+    }
+
+    private IEnumerator FadeInStart_private()
+    {
+        float i = 0.01f;
+        while (CG.alpha < 1)
+        {
+            CG.alpha += i;
+            yield return null;
+        }
+        FindObjectOfType<StartButton>().NextScene();
+    }
 }
