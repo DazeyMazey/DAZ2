@@ -377,7 +377,7 @@ Tilemap:
   - first: {x: 0, y: 6, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -386,7 +386,7 @@ Tilemap:
   - first: {x: 1, y: 6, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -399,11 +399,11 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 7db5ea3f11e85cd48a03cb226a6ff9ab, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 2
+    m_Data: {fileID: 1098286324429101383, guid: 21098e20032136943ae32a6a259fabd9,
+      type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 2
-    m_Data: {fileID: 2333874723133794383, guid: 21098e20032136943ae32a6a259fabd9,
-      type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -781,7 +781,7 @@ Animator:
   m_GameObject: {fileID: 379123184}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8e64e667e2cf3dc47a8dc58ea62ada10, type: 2}
+  m_Controller: {fileID: 9100000, guid: e6836d43a1ee2c0489d80ed60409f903, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1451,7 +1451,7 @@ Animator:
   m_GameObject: {fileID: 1468140738}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f5c6fa9b2447d54bb06537e401cd734, type: 2}
+  m_Controller: {fileID: 9100000, guid: ff3791a5442ca814eae62f3fcf9010a6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
