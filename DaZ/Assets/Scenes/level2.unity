@@ -18289,16 +18289,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6930405210617516128, guid: a36c4ef7fed816e4f879ce92492f4e7d,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6930405210617516128, guid: a36c4ef7fed816e4f879ce92492f4e7d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 4438341689791066107, guid: a36c4ef7fed816e4f879ce92492f4e7d,
         type: 3}
       propertyPath: m_Name
@@ -18367,6 +18357,16 @@ PrefabInstance:
     - target: {fileID: 519420028, guid: a36c4ef7fed816e4f879ce92492f4e7d, type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6930405210617516128, guid: a36c4ef7fed816e4f879ce92492f4e7d,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6930405210617516128, guid: a36c4ef7fed816e4f879ce92492f4e7d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1150979752, guid: a36c4ef7fed816e4f879ce92492f4e7d, type: 3}
       propertyPath: Loop

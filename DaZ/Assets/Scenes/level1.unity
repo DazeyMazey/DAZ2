@@ -37801,8 +37801,9 @@ GameObject:
   - component: {fileID: 1771078744}
   - component: {fileID: 1771078748}
   - component: {fileID: 1771078749}
+  - component: {fileID: 1771078750}
   m_Layer: 8
-  m_Name: NPC
+  m_Name: D.A-Z
   m_TagString: interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37942,7 +37943,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.6125, y: 3.6}
+    oldSize: {x: 3.6, y: 3.6}
     newSize: {x: 3.6125, y: 3.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -37964,6 +37965,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InDialogue: 0
+--- !u!95 &1771078750
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771078743}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 243979a72c6124ce8b9ca5e1e6b4cb82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1872886829
 GameObject:
   m_ObjectHideFlags: 0
