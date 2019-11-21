@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8662826120522020513}
   - component: {fileID: -6291707191055640550}
   - component: {fileID: 2944541617069036814}
+  - component: {fileID: 3323614320540862136}
   m_Layer: 9
   m_Name: Collectables
   m_TagString: collectable
@@ -70,7 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 7c61067959c134ce6a5e12eb5409b8ac, type: 3}
+  m_Sprite: {fileID: -8624046844915580692, guid: fcb1f11f01afc4525aa18d37b332a5a2,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +100,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2621951, y: 0.2682927}
+    oldSize: {x: 0.34375, y: 0.34375}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -119,3 +121,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59507e89187eaa4aa29eb62aab38d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3323614320540862136
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4599117658287031184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b57a68d2484534ea9860bff31d190412, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
