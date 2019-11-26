@@ -24,6 +24,8 @@ public class E_Behavior : MonoBehaviour
     private int PlayerLayer = (1 << 12);
 
     public bool InDialogue;
+    public bool Talking;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -688,6 +688,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3610044464204897588, guid: 3ea2376cae7e1497399566a37eac212e,
+        type: 3}
+      propertyPath: animator2
+      value: 
+      objectReference: {fileID: 1771078750}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea2376cae7e1497399566a37eac212e, type: 3}
 --- !u!1 &1096459087
@@ -37943,7 +37948,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.6, y: 3.6}
+    oldSize: {x: 3.6125, y: 3.6}
     newSize: {x: 3.6125, y: 3.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -37965,6 +37970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InDialogue: 0
+  Talking: 0
 --- !u!95 &1771078750
 Animator:
   serializedVersion: 3

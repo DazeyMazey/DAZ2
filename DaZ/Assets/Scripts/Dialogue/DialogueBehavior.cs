@@ -8,7 +8,10 @@ public class DialogueBehavior : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
+    //dialogue box
     public Animator animator;
+    //character to anim
+    public Animator animator2;
 
     private Queue<string> sentences; // list of words
     private _Dialogue[] dialogues;
@@ -48,10 +51,11 @@ public class DialogueBehavior : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
+           
             EndDialogue();
             return;
         }
-
+        animator2.SetBool("istalk", true);
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -59,6 +63,7 @@ public class DialogueBehavior : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
+     
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
@@ -72,10 +77,12 @@ public class DialogueBehavior : MonoBehaviour
     private void EndDialogue()
     {
         animator.SetBool("is_open", false);
+        
         if (i < dialogues.Length -1)
             StartDialogue(dialogues, ++i);
         else
         {
+            animator2.SetBool("istalk", false);
             FindObjectOfType<PlayerInput>().PlayPlayer();
             FindObjectOfType<DialogueListener>().Dialogueenabled = false;
             E_Behavior[] Interactables = FindObjectsOfType<E_Behavior>();
