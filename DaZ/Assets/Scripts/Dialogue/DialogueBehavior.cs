@@ -55,7 +55,9 @@ public class DialogueBehavior : MonoBehaviour
             EndDialogue();
             return;
         }
-        animator2.SetBool("istalk", true);
+        if (animator2)
+            animator2.SetBool("istalk", true);
+        
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -82,7 +84,9 @@ public class DialogueBehavior : MonoBehaviour
             StartDialogue(dialogues, ++i);
         else
         {
-            animator2.SetBool("istalk", false);
+            if (animator2)
+                animator2.SetBool("istalk", false);
+
             FindObjectOfType<PlayerInput>().PlayPlayer();
             FindObjectOfType<DialogueListener>().Dialogueenabled = false;
             E_Behavior[] Interactables = FindObjectsOfType<E_Behavior>();
