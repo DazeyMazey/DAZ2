@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 52834474}
   - component: {fileID: 52834473}
   - component: {fileID: 52834475}
+  - component: {fileID: 52834476}
   m_Layer: 8
   m_Name: NPC
   m_TagString: interact
@@ -275,6 +276,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InDialogue: 0
+  Talking: 0
+--- !u!95 &52834476
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52834469}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 243979a72c6124ce8b9ca5e1e6b4cb82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &327080831
 GameObject:
   m_ObjectHideFlags: 0
@@ -17687,6 +17708,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3610044464204897588, guid: 3ea2376cae7e1497399566a37eac212e,
+        type: 3}
+      propertyPath: animator2
+      value: 
+      objectReference: {fileID: 52834476}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea2376cae7e1497399566a37eac212e, type: 3}
 --- !u!1 &395482589

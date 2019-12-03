@@ -37533,6 +37533,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3610044464204897588, guid: 3ea2376cae7e1497399566a37eac212e,
+        type: 3}
+      propertyPath: animator2
+      value: 
+      objectReference: {fileID: 1409424526}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea2376cae7e1497399566a37eac212e, type: 3}
 --- !u!1 &1346156239
@@ -67891,6 +67896,7 @@ GameObject:
   - component: {fileID: 1409424523}
   - component: {fileID: 1409424522}
   - component: {fileID: 1409424525}
+  - component: {fileID: 1409424526}
   m_Layer: 8
   m_Name: NPC
   m_TagString: interact
@@ -67974,6 +67980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InDialogue: 0
+  Talking: 0
 --- !u!114 &1409424523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68032,6 +68039,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.6125, y: 3.6}
   m_EdgeRadius: 0
+--- !u!95 &1409424526
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409424519}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 243979a72c6124ce8b9ca5e1e6b4cb82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1761808403
 GameObject:
   m_ObjectHideFlags: 0
