@@ -17637,7 +17637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 0
-  requiredNumber: 0
+  requiredNumber: 2
   player_enter_from_left: 0
 --- !u!483693784 &1154886258
 TilemapRenderer:
@@ -18386,10 +18386,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 519420028, guid: a36c4ef7fed816e4f879ce92492f4e7d, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: -6930405210617516128, guid: a36c4ef7fed816e4f879ce92492f4e7d,
         type: 3}
       propertyPath: m_Offset.x
@@ -18399,6 +18395,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 519420028, guid: a36c4ef7fed816e4f879ce92492f4e7d, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1150979752, guid: a36c4ef7fed816e4f879ce92492f4e7d, type: 3}
       propertyPath: Loop

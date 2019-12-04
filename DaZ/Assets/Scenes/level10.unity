@@ -947,7 +947,7 @@ Tilemap:
   - first: {x: -1, y: -4, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 12
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -2845,9 +2845,8 @@ Tilemap:
   - m_RefCount: 214
     m_Data: {fileID: 2207543129136703060, guid: 9be715d15a7cb48e7a6d2977167329f9,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 4465023842029515623, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
@@ -2876,8 +2875,9 @@ Tilemap:
   - m_RefCount: 25
     m_Data: {fileID: -4829801875317462452, guid: 9be715d15a7cb48e7a6d2977167329f9,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 4465023842029515623, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
+      type: 3}
   - m_RefCount: 18
     m_Data: {fileID: -5326899884705343476, guid: 9be715d15a7cb48e7a6d2977167329f9,
       type: 3}
@@ -3635,7 +3635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 0
-  requiredNumber: 0
+  requiredNumber: 4
   player_enter_from_left: 0
 --- !u!19719996 &1142193237
 TilemapCollider2D:

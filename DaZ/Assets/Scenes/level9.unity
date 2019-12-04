@@ -15875,5 +15875,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 0
-  requiredNumber: 0
+  requiredNumber: 2
   player_enter_from_left: 0
