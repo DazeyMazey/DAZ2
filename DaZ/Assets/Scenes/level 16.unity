@@ -14038,9 +14038,6 @@ MonoBehaviour:
   dialogue:
   - name: D.A.-Z
     sentences:
-    - You've collected all of my parts!
-  - name: Bud
-    sentences:
     - To Earth we go!
 --- !u!114 &1832297298
 MonoBehaviour:
