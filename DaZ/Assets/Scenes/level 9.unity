@@ -22107,7 +22107,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: aac8fe9078c3f3e4e9879e69a761c858, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 4
-    m_Data: {fileID: 8726148449916930910, guid: 2c77e3d7c01507e45814602c3a8ff859,
+    m_Data: {fileID: 2828077047651648745, guid: 2c77e3d7c01507e45814602c3a8ff859,
       type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -22691,7 +22691,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: dcddf836866fc7e45906e70ae4907a6e, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 7
-    m_Data: {fileID: -6790141095827271024, guid: 9b758ed89de970046b5109b95e9fd299,
+    m_Data: {fileID: 8138688763932985303, guid: 9b758ed89de970046b5109b95e9fd299,
       type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -26258,5 +26258,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 0
-  requiredNumber: 2
-  player_enter_from_left: 0
+  requiredNumber: 10
+  player_enter_from_left: 1
