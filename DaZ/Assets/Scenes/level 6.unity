@@ -813,7 +813,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 14
-    m_Data: {fileID: 2333874723133794383, guid: 21098e20032136943ae32a6a259fabd9,
+    m_Data: {fileID: 7419590508823533442, guid: 21098e20032136943ae32a6a259fabd9,
       type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -25737,8 +25737,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 5, y: 8, z: 0}
     second:
-      m_TileIndex: 28
-      m_TileSpriteIndex: 4294967295
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -25746,8 +25746,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 6, y: 8, z: 0}
     second:
-      m_TileIndex: 30
-      m_TileSpriteIndex: 4294967295
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -37959,7 +37959,7 @@ Tilemap:
       m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 3221
+  - m_RefCount: 3223
     m_Data: {fileID: 11400000, guid: dda1ff6baa989eb41831a914e0876f91, type: 2}
   - m_RefCount: 20
     m_Data: {fileID: 11400000, guid: dab45c1e59ea26f4d8af66175a7ef0c2, type: 2}
@@ -38015,12 +38015,12 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 9dada961d8f434c80a9744be41660fb7, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 39a58a0f7e3074365b88fe3cd53ac8b0, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: e153df79cefa443b080456552bae45d9, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 40344dc5fca0046f5b8c04e2d9d52c53, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: abb6f0a89744d48a89d0fd975173418b, type: 2}
   - m_RefCount: 0
@@ -38092,7 +38092,7 @@ Tilemap:
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: dc6f5d0d51e1f41898e9ffb0d2fe13e2, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 3221
+  - m_RefCount: 3223
     m_Data: {fileID: -1514167722224140890, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
       type: 3}
   - m_RefCount: 20
