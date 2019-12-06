@@ -4500,7 +4500,7 @@ Tilemap:
   - first: {x: 1, y: -10, z: 0}
     second:
       m_TileIndex: 23
-      m_TileSpriteIndex: 23
+      m_TileSpriteIndex: 24
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -4896,7 +4896,7 @@ Tilemap:
   - first: {x: 1, y: -9, z: 0}
     second:
       m_TileIndex: 22
-      m_TileSpriteIndex: 22
+      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -5247,7 +5247,7 @@ Tilemap:
   - first: {x: 1, y: -8, z: 0}
     second:
       m_TileIndex: 21
-      m_TileSpriteIndex: 21
+      m_TileSpriteIndex: 22
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -5913,7 +5913,7 @@ Tilemap:
   - first: {x: -2, y: -5, z: 0}
     second:
       m_TileIndex: 8
-      m_TileSpriteIndex: 8
+      m_TileSpriteIndex: 21
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -13674,9 +13674,8 @@ Tilemap:
   - m_RefCount: 3
     m_Data: {fileID: -7657786971534028122, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 6172224421798632309, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: 3098066890171153025, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
       type: 3}
@@ -13713,6 +13712,9 @@ Tilemap:
     m_Data: {fileID: 6729705049558487612, guid: 8924a0bff83db4dda9b111753b967d0a,
       type: 3}
   - m_RefCount: 1
+    m_Data: {fileID: 6172224421798632309, guid: 39ab5be2c6b2a424cae4fc8bb06b8c4e,
+      type: 3}
+  - m_RefCount: 1
     m_Data: {fileID: -8443892667014129338, guid: 8924a0bff83db4dda9b111753b967d0a,
       type: 3}
   - m_RefCount: 1
@@ -13721,8 +13723,6 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 1190543688147934213, guid: 8924a0bff83db4dda9b111753b967d0a,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 4859726182157317072, guid: 19c3f820fbf5b49f6961cae36231adca,
       type: 3}
@@ -14177,7 +14177,7 @@ PrefabInstance:
     - target: {fileID: 4438341689791066105, guid: a36c4ef7fed816e4f879ce92492f4e7d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2
+      value: 4.22
       objectReference: {fileID: 0}
     - target: {fileID: 4438341689791066105, guid: a36c4ef7fed816e4f879ce92492f4e7d,
         type: 3}
